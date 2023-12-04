@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Communihealth App V2</string>
+    <string name="communihealthTitle">Welcome Nurse!</string>
+    <string name="communihealthSubtitle">Service Required:</string>
+    <string name="addPatientButton">Add Details</string>
+    <string name="editPatientButton">Edit Details</string>
+    <string name="savePatientButton">Save Patient Details</string>
+    <string name="homehelp">Home Help</string>
+    <string name="dementia">Dementia Care</string>
+    <string name="fullcare">Full Nursing Care</string>
+    <string name="convalescent">Convalescent Care</string>
+    <string name="details">Review details</string>
+    <string name="patientDetails">Patient Details</string>
+    <string name="patientSummary">Patient Summary</string>
+    <string name="patientId">Patient ID:</string>
+    <string name="firstName">First Name:</string>
+    <string name="lastName">Last Name:</string>
+    <string name="birthdate">Date of Birth:</string>
+    <string name="street">Street:</string>
+    <string name="town">Town:</string>
+    <string name="county">County:</string>
+    <string name="eircode">EirCode:</string>
+    <string name="category">Category</string>
+</resources>
