@@ -20,4 +20,6 @@
     <string name="town">Town:</string>
     <string name="eircode">EirCode:</string>
     <string name="totalPatients">$%d</string>
+    <string name="action_addpatient">Add Patient</string>
+    <string name="action_patientlist">Patient List</string>
 </resources>

@@ -1,9 +1,13 @@
 package com.mobile.communihealthv2.activities
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.mobile.communihealthv2.R
 import com.mobile.communihealthv2.databinding.ActivityPatientBinding
 import com.mobile.communihealthv2.main.Communihealthv2App
 import timber.log.Timber
@@ -40,6 +44,22 @@ class Patient : AppCompatActivity() {
 
                 Toast.makeText(this, "Please select a category", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+        menuInflater.inflate(R.menu.menu_patient, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when (item.itemId) {
+            R.id.action_patientlist -> {
+                startActivity(Intent(this, PatientList::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
