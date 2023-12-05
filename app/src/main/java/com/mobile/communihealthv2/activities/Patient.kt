@@ -24,6 +24,12 @@ class Patient : AppCompatActivity() {
         setContentView(patientLayout.root)
         app = this.application as Communihealthv2App
 
+        patientLayout.addPatientButton.setOnClickListener {
+
+            val intent = Intent(this, PatientDetailsActivity::class.java)
+            startActivity(intent)
+        }
+
         patientLayout.savePatientButton.setOnClickListener {
 
             val selectedRadioButtonId = patientLayout.category.checkedRadioButtonId

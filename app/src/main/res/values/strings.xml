@@ -3,6 +3,10 @@
     <string name="communihealthTitle">Welcome Nurse!</string>
     <string name="communihealthSubtitle">Service Required:</string>
     <string name="addPatientButton">Add Details</string>
+    <string name="cancelPatientButton">Cancel</string>
+    <string name="saveDetailsButton">Save Details</string>
+    <string name="patientMapButton">Address Map</string>
+    <string name="patientImgButton">Photo</string>
     <string name="editPatientButton">Edit Details</string>
     <string name="savePatientButton">Save Patient Details</string>
     <string name="homehelp">Home Help</string>
