@@ -18,7 +18,6 @@
     <string name="birthdate">Date of Birth:</string>
     <string name="street">Street:</string>
     <string name="town">Town:</string>
-    <string name="county">County:</string>
     <string name="eircode">EirCode:</string>
-    <string name="category">Category</string>
+    <string name="totalPatients">$%d</string>
 </resources>
