@@ -6,25 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.Patient">
 
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="349dp"
-        android:layout_height="14dp"
-        android:layout_above="@+id/addPatientButton"
-        android:layout_alignEnd="@+id/communihealthTitle"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:indeterminate="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
-
     <TextView
         android:id="@+id/communihealthTitle"
         android:layout_width="wrap_content"
@@ -67,7 +48,7 @@
         app:layout_constraintVertical_bias="0.079" />
 
     <Button
-        android:id="@+id/addPatientButton"
+        android:id="@+id/addDetailsButton"
         android:layout_width="175dp"
         android:layout_height="57dp"
         android:layout_alignParentBottom="true"
@@ -76,31 +57,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/addPatientButton"
+        android:text="@string/addDetailsButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.431" />
-
-    <Button
-        android:id="@+id/editPatientButton"
-        android:layout_width="167dp"
-        android:layout_height="57dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/editPatientButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.969"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.431" />
+        app:layout_constraintVertical_bias="0.443" />
 
     <Button
         android:id="@+id/savePatientButton"
@@ -125,7 +87,6 @@
         android:id="@+id/category"
         android:layout_width="377dp"
         android:layout_height="206dp"
-        android:layout_above="@+id/progressBar"
         android:layout_below="@+id/communihealthSubtitle"
         android:layout_alignParentStart="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -164,142 +125,56 @@
             android:text="@string/homehelp" />
     </RadioGroup>
 
-    <TextView
+
+    <EditText
+        android:id="@+id/patientNumber"
+        android:layout_width="345dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="364dp"
+        android:hint="@string/patientNumber"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
         android:id="@+id/firstName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/firstName"
+        android:layout_width="345dp"
+        android:layout_height="55dp"
+        android:hint="@string/firstName"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintTop_toBottomOf="@+id/patientNumber"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.589" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <TextView
+    <EditText
         android:id="@+id/lastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/lastName"
+        android:layout_width="345dp"
+        android:layout_height="55dp"
+        android:hint="@string/lastName"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintTop_toBottomOf="@+id/firstName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.636" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <TextView
-        android:id="@+id/street"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/street"
+    <EditText
+        android:id="@+id/birthDate"
+        android:layout_width="345dp"
+        android:layout_height="55dp"
+        android:hint="@string/birthdate"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintTop_toBottomOf="@+id/lastName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.736" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <TextView
-        android:id="@+id/patientId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/patientId"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.541" />
-
-    <TextView
-        android:id="@+id/town"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/town"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.782" />
-
-    <TextView
+    <EditText
         android:id="@+id/eircode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/eircode"
+        android:layout_width="345dp"
+        android:layout_height="55dp"
+        android:hint="@string/eircode"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintTop_toBottomOf="@+id/birthDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.832" />
-
-    <TextView
-        android:id="@+id/birthdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/birthdate"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.687" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="349dp"
-        android:layout_height="14dp"
-        android:layout_above="@+id/addPatientButton"
-        android:layout_alignEnd="@+id/communihealthTitle"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:indeterminate="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

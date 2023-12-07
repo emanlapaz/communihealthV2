@@ -7,11 +7,11 @@ import timber.log.Timber
 
 class Communihealthv2App : Application() {
 
-    lateinit var patientStore: PatientStore
+    lateinit var patientsStore: PatientStore
     override fun onCreate(){
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-        patientStore = PatientMemStore()
+        patientsStore = PatientMemStore()
         Timber.i("Starting Communihealthv2 Application")
     }
 }

@@ -2,7 +2,7 @@
     <string name="app_name">Communihealth App V2</string>
     <string name="communihealthTitle">Welcome Nurse!</string>
     <string name="communihealthSubtitle">Service Required:</string>
-    <string name="addPatientButton">Add Details</string>
+    <string name="addDetailsButton"> Additional Details</string>
     <string name="cancelPatientButton">Cancel</string>
     <string name="saveDetailsButton">Save Details</string>
     <string name="patientMapButton">Address Map</string>
@@ -16,7 +16,7 @@
     <string name="details">Review details</string>
     <string name="patientDetails">Patient Details</string>
     <string name="patientSummary">Patient Summary</string>
-    <string name="patientId">Patient ID:</string>
+    <string name="patientNumber">Patient Number:</string>
     <string name="firstName">First Name:</string>
     <string name="lastName">Last Name:</string>
     <string name="birthdate">Date of Birth:</string>
@@ -26,4 +26,5 @@
     <string name="totalPatients">$%d</string>
     <string name="action_addpatient">Add Patient</string>
     <string name="action_patientlist">Patient List</string>
+    <string name="patientlistTitle">Patient List</string>
 </resources>

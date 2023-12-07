@@ -2,7 +2,6 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
@@ -24,18 +23,16 @@
             app:srcCompat="@mipmap/ic_launcher_round" />
 
         <TextView
-            android:id="@+id/patientId"
+            android:id="@+id/patientNumber"
             android:layout_width="79dp"
             android:layout_height="26dp"
-            android:text="@string/patientId"
+            android:text="@string/patientNumber"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.373"
+            app:layout_constraintHorizontal_bias="0.448"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.061"
-            tools:text="123" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/firstName"
@@ -45,25 +42,23 @@
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.382"
+            app:layout_constraintHorizontal_bias="0.442"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.482"
-            tools:text="John" />
+            app:layout_constraintVertical_bias="0.859" />
 
         <TextView
             android:id="@+id/lastName"
-            android:layout_width="115dp"
-            android:layout_height="25dp"
+            android:layout_width="114dp"
+            android:layout_height="26dp"
             android:text="@string/lastName"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.22"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/firstName"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.486"
-            tools:text="Murphy" />
+            app:layout_constraintVertical_bias="0.859" />
 
         <TextView
             android:id="@+id/category"
@@ -74,10 +69,10 @@
             android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.803"
+            app:layout_constraintHorizontal_bias="0.965"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.063" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

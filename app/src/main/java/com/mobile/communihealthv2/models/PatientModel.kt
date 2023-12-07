@@ -6,11 +6,10 @@ import java.util.Date
 
 @Parcelize
 data class PatientModel (var patientId: Long = 0,
+                         var patientNumber: String ="",
                          var firstName: String = "",
                          var lastName: String = "",
-                         var birthDate: Date,
-                         var town: String = "",
+                         var birthDate: String = "",
                          var eircode: String = "",
-                         var street: String = "",
                          var category: String = "",
                          ): Parcelable
