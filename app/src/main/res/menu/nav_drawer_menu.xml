@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/patientFragment"
+            android:icon="@drawable/ic_menu_patient"
+            android:title="@string/action_addpatient" />
+        <item
+            android:id="@+id/patientListFragment"
+            android:icon="@drawable/ic_menu_patientlist"
+            android:title="@string/action_patientlist" />
+    </group>
+
+    <item android:title="@string/group_communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="@string/action_share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/action_send" />
+        </menu>
+    </item>
+</menu>

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_addpatient"
+        android:id="@+id/patientFragment"
         android:orderInCategory="100"
         android:title="@string/action_addpatient"
         app:showAsAction="never" />
