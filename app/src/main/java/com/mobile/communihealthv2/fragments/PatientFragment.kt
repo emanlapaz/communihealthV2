@@ -33,7 +33,6 @@ class PatientFragment : Fragment() {
         activity?.title = getString(R.string.action_addpatient)
 
         setButtonListener(fragBinding)
-
         return root
     }
 

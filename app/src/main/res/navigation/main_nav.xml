@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/patientFragment"
         android:name="com.mobile.communihealthv2.fragments.PatientFragment"
-        android:label="fragment_patient"
+        android:label="@string/action_addpatient"
         tools:layout="@layout/fragment_patient" >
         <action
             android:id="@+id/action_patientFragment_to_patientListFragment"
@@ -16,10 +16,11 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
+
     <fragment
         android:id="@+id/patientListFragment"
         android:name="com.mobile.communihealthv2.fragments.PatientListFragment"
-        android:label="fragment_patient_list"
+        android:label="@string/action_patientlist"
         tools:layout="@layout/fragment_patient_list" >
         <action
             android:id="@+id/action_patientListFragment_to_patientFragment"
@@ -27,4 +28,10 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
+
+    <fragment
+        android:id="@+id/aboutscreenFragment"
+        android:name="com.mobile.communihealthv2.fragments.AboutScreenFragment"
+        android:label="@string/action_about"
+        tools:layout="@layout/fragment_aboutscreen" />
 </navigation>

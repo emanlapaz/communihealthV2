@@ -12,6 +12,10 @@
             android:id="@+id/patientListFragment"
             android:icon="@drawable/ic_menu_patientlist"
             android:title="@string/action_patientlist" />
+        <item
+            android:id="@+id/aboutscreenFragment"
+            android:icon="@drawable/ic_menu_aboutscreen"
+            android:title="@string/action_about" />
     </group>
 
     <item android:title="@string/group_communicate">

@@ -33,4 +33,7 @@
     <string name="nav_header_title">CommuniHealth V2.0</string>
     <string name="nav_header_subtitle">nurse@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="action_about">About CommuniHealth</string>
+    <string name="aboutscreen_title">CommuniHealth Mobile App Version 2</string>
+    <string name="aboutscreen_message">CommuniHealth \n\n Mobile App Version 2 \n\n... \n\nintro</string>
 </resources>

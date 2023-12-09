@@ -32,7 +32,7 @@ class PatientListFragment : Fragment() {
     ): View? {
         _fragBinding = FragmentPatientListBinding.inflate(inflater, container, false)
         val root = fragBinding.root
-        activity?.title = getString(R.string.action_patientlist)
+        activity?.title = getString(R.string.patientlistTitle)
 
         fragBinding.recyclerView.setLayoutManager(LinearLayoutManager(activity))
         fragBinding.recyclerView.adapter = PatientAdapter(app.patientsStore.findAll())
