@@ -7,7 +7,11 @@ import com.mobile.communihealthv2.R
 import com.mobile.communihealthv2.databinding.CardPatientlistBinding
 import com.mobile.communihealthv2.models.PatientModel
 
-class PatientAdapter constructor( private var patients: List<PatientModel>)
+interface PatientClickListener {
+    fun onPatientClick(patient: PatientModel)
+}
+class PatientAdapter constructor( private var patients: List<PatientModel>,
+                                  private var listener: PatientClickListener)
     : RecyclerView.Adapter<PatientAdapter.MainHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val binding = CardPatientlistBinding
@@ -17,18 +21,18 @@ class PatientAdapter constructor( private var patients: List<PatientModel>)
     }
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val patient = patients[holder.adapterPosition]
-        holder.bind(patient)
-        }
+        holder.bind(patient, listener)
+    }
+
     override fun getItemCount(): Int = patients.size
 
     inner class MainHolder(val binding: CardPatientlistBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(patient: PatientModel) {
-            binding.patientNumber.text = patient.patientNumber
-            binding.firstName.text = patient.firstName
-            binding.lastName.text = patient.lastName
-            binding.category.text = patient.category
+        fun bind(patient: PatientModel, listener: PatientClickListener) {
+            binding.patient = patient
             binding.imageIcon.setImageResource(R.mipmap.ic_launcher_round)
+            binding.root.setOnClickListener { listener.onPatientClick(patient)}
+            binding.executePendingBindings()
         }
     }
 }

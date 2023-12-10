@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/patientFragment">
+    app:startDestination="@id/patientListFragment">
 
     <fragment
         android:id="@+id/patientFragment"
-        android:name="com.mobile.communihealthv2.fragments.PatientFragment"
+        android:name="com.mobile.communihealthv2.ui.patient.PatientFragment"
         android:label="@string/action_addpatient"
         tools:layout="@layout/fragment_patient" >
         <action
@@ -19,19 +19,41 @@
 
     <fragment
         android:id="@+id/patientListFragment"
-        android:name="com.mobile.communihealthv2.fragments.PatientListFragment"
+        android:name="com.mobile.communihealthv2.ui.patientlist.PatientListFragment"
         android:label="@string/action_patientlist"
         tools:layout="@layout/fragment_patient_list" >
         <action
             android:id="@+id/action_patientListFragment_to_patientFragment"
             app:destination="@id/patientFragment"
+            app:popUpTo="@id/main_nav"
+            app:popUpToInclusive="true"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_patientListFragment_to_patientDetailFragment"
+            app:destination="@id/patientDetailFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/aboutscreenFragment"
-        android:name="com.mobile.communihealthv2.fragments.AboutScreenFragment"
+        android:name="com.mobile.communihealthv2.ui.about.AboutFragment"
         android:label="@string/action_about"
         tools:layout="@layout/fragment_aboutscreen" />
+
+
+    <fragment
+        android:id="@+id/patientDetailFragment"
+        android:name="com.mobile.communihealthv2.ui.detail.PatientDetailFragment"
+        android:label="Patient Detail"
+        tools:layout="@layout/fragment_patient_detail" >
+
+        <action
+            android:id="@+id/action_patientDetailFragment_to_patientListFragment"
+            app:destination="@id/patientListFragment" />
+        <argument
+            android:name="patientId"
+            app:argType="long" />
+
+    </fragment>
+
 </navigation>

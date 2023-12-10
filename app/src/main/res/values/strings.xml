@@ -36,4 +36,6 @@
     <string name="action_about">About CommuniHealth</string>
     <string name="aboutscreen_title">CommuniHealth Mobile App Version 2</string>
     <string name="aboutscreen_message">CommuniHealth \n\n Mobile App Version 2 \n\n... \n\nintro</string>
+    <string name="patientsNotFound">No Patients Yet...\nGo Add a Patient!</string>
+    <string name="patientError">Error : Couldn\'t Add a Patient...</string>
 </resources>

@@ -7,16 +7,16 @@ var lastId = 0L
 internal fun getId(): Long {
     return lastId++
 }
-class PatientMemStore: PatientStore {
+object PatientManager: PatientStore {
 
-    val patients = ArrayList<PatientModel>()
+    private val patients = ArrayList<PatientModel>()
 
     override fun findAll(): List<PatientModel> {
         return patients
     }
 
-    override fun findById(id: Long): PatientModel? {
-        val foundPatient: PatientModel? = patients.find { it.patientId == id }
+    override fun findById(patientId: Long): PatientModel? {
+        val foundPatient: PatientModel? = patients.find { it.patientId == patientId } //? ID
         return foundPatient
     }
 
