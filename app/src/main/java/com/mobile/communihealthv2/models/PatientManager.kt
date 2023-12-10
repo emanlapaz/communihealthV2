@@ -23,8 +23,10 @@ object PatientManager: PatientStore {
     override fun create(patient: PatientModel) {
         patient.patientId = getId()
         patients.add(patient)
+        Timber.i("Patient added: $patient")
         logAll()
     }
+
 
     fun logAll() {
         Timber.v("** Patients List **")

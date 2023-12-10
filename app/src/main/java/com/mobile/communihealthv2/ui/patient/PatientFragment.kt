@@ -33,11 +33,12 @@ class PatientFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Timber.i("PatientFragment: onCreate")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?
-    ): View? {
+                              savedInstanceState: Bundle?): View? {
+        Timber.i("PatientFragment: onCreateView")
         _fragBinding = FragmentPatientBinding.inflate(inflater, container, false)
         val root = fragBinding.root
         setupMenu()
@@ -46,7 +47,8 @@ class PatientFragment : Fragment() {
             ViewModelProvider(this).get(PatientViewModel::class.java)
 
         patientViewModel.observableStatus.observe(viewLifecycleOwner, Observer {
-            status -> status?.let {render(status)}
+            status -> status?.let {render(status)
+            Timber.i("PatientFragment: Observable status changed - $status")}
         })
         setButtonListener(fragBinding)
         return root
@@ -64,6 +66,7 @@ class PatientFragment : Fragment() {
 
    fun setButtonListener(layout: FragmentPatientBinding) {
         layout.savePatientButton.setOnClickListener {
+            Timber.i("PatientFragment: Save button clicked")
             val selectedRadioButtonId = layout.category.checkedRadioButtonId
 
             if (selectedRadioButtonId != -1) {
@@ -74,6 +77,7 @@ class PatientFragment : Fragment() {
                 val eircode = layout.eircode.text.toString()
                 val selectedRadioButton = layout.root.findViewById<RadioButton>(selectedRadioButtonId)
                 val category = selectedRadioButton?.text.toString()
+                Timber.i("PatientFragment: New Patient Data: $patientNumber, $firstName, $lastName, $birthDate, $eircode, $category")
 
                 patientViewModel.addPatient(PatientModel(
                     patientNumber = patientNumber,
@@ -108,11 +112,13 @@ class PatientFragment : Fragment() {
     }
     override fun onDestroyView() {
         super.onDestroyView()
+        Timber.i("PatientFragment: onDestroyView")
         _fragBinding = null
     }
 
     override fun onResume() {
         super.onResume()
+        Timber.i("PatientFragment: onResume")
         val patientListViewModel = ViewModelProvider(this).get(PatientListViewModel::class.java)
         patientListViewModel.observablePatientsList.observe(viewLifecycleOwner, Observer {
         })

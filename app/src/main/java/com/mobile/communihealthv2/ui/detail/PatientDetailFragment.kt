@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.mobile.communihealthv2.R
 import com.mobile.communihealthv2.databinding.FragmentPatientDetailBinding
+import timber.log.Timber
 
 class PatientDetailFragment : Fragment() {
 
@@ -21,27 +22,34 @@ class PatientDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
 
+    ): View? {
+        Timber.i("PatientDetailFragment: onCreateView")
         _fragBinding = FragmentPatientDetailBinding.inflate(inflater, container, false)
         val root = fragBinding.root
 
         detailViewModel = ViewModelProvider(this).get(PatientDetailViewModel::class.java)
-        detailViewModel.observablePatient.observe(viewLifecycleOwner, Observer { render() })
+        detailViewModel.observablePatient.observe(viewLifecycleOwner, Observer {
+            Timber.i("PatientDetailFragment: Observable patient changed")
+            render()
+        })
         return root
     }
 
     private fun render() {
+        Timber.i("PatientDetailFragment: render called")
         fragBinding.patientvm = detailViewModel
     }
 
     override fun onResume() {
         super.onResume()
+        Timber.i("PatientDetailFragment: onResume - Patient ID: ${args.patientId}")
         detailViewModel.getPatient(args.patientId)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        Timber.i("PatientDetailFragment: onDestroyView")
         _fragBinding = null
     }
 }

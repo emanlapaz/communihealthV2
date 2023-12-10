@@ -25,6 +25,7 @@ import com.mobile.communihealthv2.adapters.PatientClickListener
 import com.mobile.communihealthv2.databinding.FragmentPatientListBinding
 import com.mobile.communihealthv2.main.Communihealthv2App
 import com.mobile.communihealthv2.models.PatientModel
+import timber.log.Timber
 
 class PatientListFragment : Fragment() , PatientClickListener {
 
@@ -36,12 +37,14 @@ class PatientListFragment : Fragment() , PatientClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Timber.i("PatientListFragment: onCreate")
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Timber.i("PatientListFragment: onCreateView")
         _fragBinding = FragmentPatientListBinding.inflate(inflater, container, false)
         val root = fragBinding.root
         setupMenu()
@@ -78,7 +81,8 @@ class PatientListFragment : Fragment() , PatientClickListener {
     }
 
     private fun render(patientsList: List<PatientModel>) {
-        fragBinding.recyclerView.adapter = PatientAdapter(patientsList,this)
+        Timber.i("PatientListFragment: render - Patients list size: ${patientsList.size}")
+        fragBinding.recyclerView.adapter = PatientAdapter(patientsList, this)
         if (patientsList.isEmpty()) {
             fragBinding.recyclerView.visibility = View.GONE
             fragBinding.patientsNotFound.visibility = View.VISIBLE
@@ -88,17 +92,20 @@ class PatientListFragment : Fragment() , PatientClickListener {
         }
     }
     override fun onPatientClick(patient: PatientModel) {
+        Timber.i("PatientListFragment: onPatientClick - Patient ID: ${patient.patientId}")
         val action = PatientListFragmentDirections.actionPatientListFragmentToPatientDetailFragment(patient.patientId)
         findNavController().navigate(action)
     }
 
     override fun onResume() {
         super.onResume()
+        Timber.i("PatientListFragment: onResume")
         patientListViewModel.load()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        Timber.i("PatientListFragment: onDestroyView")
         _fragBinding = null
     }
 }

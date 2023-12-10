@@ -14,7 +14,7 @@
     <string name="fullcare">Full Nursing Care</string>
     <string name="convalescent">Convalescent Care</string>
     <string name="details">Review details</string>
-    <string name="patientDetails">Patient Details</string>
+    <string name="patientDetails">Patient Details:</string>
     <string name="patientSummary">Patient Summary</string>
     <string name="patientNumber">Patient Number:</string>
     <string name="firstName">First Name:</string>
