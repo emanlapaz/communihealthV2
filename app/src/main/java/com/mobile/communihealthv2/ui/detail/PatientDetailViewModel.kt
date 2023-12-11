@@ -15,4 +15,5 @@ class PatientDetailViewModel : ViewModel() {
     fun getPatient(patientId: Long) {
         patient.value = PatientManager.findById(patientId)
     }
+
 }

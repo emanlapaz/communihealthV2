@@ -38,4 +38,5 @@
     <string name="aboutscreen_message">CommuniHealth \n\n Mobile App Version 2 \n\n... \n\nintro</string>
     <string name="patientsNotFound">No Patients Yet...\nGo Add a Patient!</string>
     <string name="patientError">Error : Couldn\'t Add a Patient...</string>
+    <string name="editScreen">Edit Patient Details:</string>
 </resources>

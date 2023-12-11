@@ -22,23 +22,41 @@ class PatientDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-
     ): View? {
         Timber.i("PatientDetailFragment: onCreateView")
         _fragBinding = FragmentPatientDetailBinding.inflate(inflater, container, false)
         val root = fragBinding.root
 
+        // Initialize ViewModel
         detailViewModel = ViewModelProvider(this).get(PatientDetailViewModel::class.java)
+
+        // Observe the LiveData
         detailViewModel.observablePatient.observe(viewLifecycleOwner, Observer {
             Timber.i("PatientDetailFragment: Observable patient changed")
             render()
         })
+
+        // Set up RadioGroup listener
+        fragBinding.category.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.fullcare -> detailViewModel.observablePatient.value?.category = "Full Nursing Care"
+                R.id.dementia -> detailViewModel.observablePatient.value?.category = "Dementia Care"
+                R.id.convalescent -> detailViewModel.observablePatient.value?.category = "Convalescent Care"
+                R.id.homehelp -> detailViewModel.observablePatient.value?.category = "Home Help"
+            }
+        }
+
+        // Load patient data
+        val patientId = args.patientId
+        Timber.i("PatientDetailFragment: Received patient ID - $patientId")
+        detailViewModel.getPatient(patientId)
+
         return root
     }
 
     private fun render() {
         Timber.i("PatientDetailFragment: render called")
-        fragBinding.patientvm = detailViewModel
+        fragBinding.patient = detailViewModel.observablePatient.value
     }
 
     override fun onResume() {
