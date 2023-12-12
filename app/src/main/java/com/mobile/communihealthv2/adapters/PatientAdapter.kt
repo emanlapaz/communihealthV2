@@ -24,6 +24,11 @@ class PatientAdapter constructor( private var patients: List<PatientModel>,
         holder.bind(patient, listener)
     }
 
+    fun removeAt(position: Int) {
+      patients.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
     override fun getItemCount(): Int = patients.size
 
     inner class MainHolder(val binding: CardPatientlistBinding) :
