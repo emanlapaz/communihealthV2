@@ -10,7 +10,7 @@ import com.mobile.communihealthv2.models.PatientModel
 interface PatientClickListener {
     fun onPatientClick(patient: PatientModel)
 }
-class PatientAdapter constructor( private var patients: List<PatientModel>,
+class PatientAdapter constructor( private var patients: ArrayList<PatientModel>,
                                   private var listener: PatientClickListener)
     : RecyclerView.Adapter<PatientAdapter.MainHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -34,6 +34,7 @@ class PatientAdapter constructor( private var patients: List<PatientModel>,
     inner class MainHolder(val binding: CardPatientlistBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(patient: PatientModel, listener: PatientClickListener) {
+            binding.root.tag = patient
             binding.patient = patient
             binding.imageIcon.setImageResource(R.mipmap.ic_launcher_round)
             binding.root.setOnClickListener { listener.onPatientClick(patient)}

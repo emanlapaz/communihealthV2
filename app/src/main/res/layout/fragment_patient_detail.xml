@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="patient"
-            type="com.mobile.communihealthv2.models.PatientModel" />
+            name="patientvm"
+            type="com.mobile.communihealthv2.ui.detail.PatientDetailViewModel" />
     </data>
 
 
@@ -41,7 +41,7 @@
             android:layout_width="238dp"
             android:layout_height="30dp"
             android:layout_alignParentTop="true"
-            android:text="@{patient.category}"
+            android:text="@{patientvm.observablePatient.category}"
             android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +97,7 @@
             android:layout_width="345dp"
             android:layout_height="55dp"
             android:layout_marginTop="336dp"
-            android:text="@={patient.patientNumber}"
+            android:text="@={patientvm.observablePatient.patientNumber}"
             android:hint="@string/patientNumber"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +108,7 @@
             android:id="@+id/firstName"
             android:layout_width="345dp"
             android:layout_height="55dp"
-            android:text="@={patient.firstName}"
+            android:text="@={patientvm.observablePatient.firstName}"
             android:hint="@string/firstName"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             app:layout_constraintTop_toBottomOf="@+id/patientNumber"
@@ -119,7 +119,7 @@
             android:id="@+id/lastName"
             android:layout_width="345dp"
             android:layout_height="55dp"
-            android:text="@={patient.lastName}"
+            android:text="@={patientvm.observablePatient.lastName}"
             android:hint="@string/lastName"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             app:layout_constraintTop_toBottomOf="@+id/firstName"
@@ -130,7 +130,7 @@
         android:id="@+id/birthDate"
         android:layout_width="345dp"
         android:layout_height="55dp"
-        android:text="@={patient.birthDate}"
+        android:text="@={patientvm.observablePatient.birthDate}"
         android:hint="@string/birthdate"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintTop_toBottomOf="@+id/lastName"
@@ -141,7 +141,7 @@
         android:id="@+id/eircode"
         android:layout_width="345dp"
         android:layout_height="55dp"
-        android:text="@={patient.eircode}"
+        android:text="@={patientvm.observablePatient.eircode}"
         android:hint="@string/eircode"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintTop_toBottomOf="@+id/birthDate"

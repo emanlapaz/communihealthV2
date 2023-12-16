@@ -11,11 +11,11 @@ import com.mobile.communihealthv2.models.PatientModel
 import com.mobile.communihealthv2.models.PatientStore
 import timber.log.Timber
 
-object FirebaseDMManager : PatientStore {
+object FirebaseDBManager : PatientStore {
 
     var database: DatabaseReference = FirebaseDatabase.getInstance().reference
 
-    override fun findAll(donationsList: MutableLiveData<List<PatientModel>>) {
+    override fun findAll(patientsList: MutableLiveData<List<PatientModel>>) {
             TODO("Not yet implemented")
     }
 
@@ -24,7 +24,7 @@ object FirebaseDMManager : PatientStore {
         database.child("user-patients").child(userid)
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
-                    Timber.i("Firebase Donation error : ${error.message}")
+                    Timber.i("Firebase Patient error : ${error.message}")
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {

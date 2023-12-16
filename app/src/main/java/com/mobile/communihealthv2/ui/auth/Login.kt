@@ -1,21 +1,16 @@
 package com.mobile.communihealthv2.ui.auth
 
-import android.app.AlertDialog
+
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.mobile.communihealthv2.R
 import com.mobile.communihealthv2.databinding.LoginBinding
 import com.mobile.communihealthv2.ui.home.Home
-import com.mobile.communihealthv2.utils.createLoader
-import com.mobile.communihealthv2.utils.hideLoader
-import com.mobile.communihealthv2.utils.showLoader
 import timber.log.Timber
 
 class Login : AppCompatActivity() {

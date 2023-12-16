@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "974261957589",
+    "firebase_url": "https://communihealthv2-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "communihealthv2",
+    "storage_bucket": "communihealthv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974261957589:android:59c0a7b82e5edd9485435c",
+        "android_client_info": {
+          "package_name": "com.mobile.communihealthv2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbDh5ey2-4ztKfdZCrNblQV-oGnEJz-pg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

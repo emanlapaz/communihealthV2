@@ -1,4 +1,4 @@
-package ie.wit.donationx.firebase
+package com.mobile.communihealthv2.firebase
 
 import android.app.Application
 import android.widget.Toast

@@ -51,8 +51,8 @@
             android:id="@+id/action_patientDetailFragment_to_patientListFragment"
             app:destination="@id/patientListFragment" />
         <argument
-            android:name="patientId"
-            app:argType="long" />
+            android:name="patientid"
+            app:argType="string" />
 
     </fragment>
 

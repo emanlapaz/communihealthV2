@@ -1,7 +1,6 @@
 package com.mobile.communihealthv2.main
 
 import android.app.Application
-import com.mobile.communihealthv2.models.PatientManager
 import com.mobile.communihealthv2.models.PatientStore
 import timber.log.Timber
 

@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,6 +21,7 @@ import androidx.navigation.ui.NavigationUI
 import com.mobile.communihealthv2.R
 import com.mobile.communihealthv2.databinding.FragmentPatientBinding
 import com.mobile.communihealthv2.models.PatientModel
+import com.mobile.communihealthv2.ui.auth.LoggedInViewModel
 import com.mobile.communihealthv2.ui.patientlist.PatientListViewModel
 import timber.log.Timber
 
@@ -30,6 +32,8 @@ class PatientFragment : Fragment() {
     private val fragBinding get() = _fragBinding!!
 
     private lateinit var patientViewModel: PatientViewModel
+    private val patientListViewModel: PatientListViewModel by activityViewModels()
+    private val loggedInViewModel : LoggedInViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,20 +79,22 @@ class PatientFragment : Fragment() {
                 val lastName = layout.lastName.text.toString()
                 val birthDate = layout.birthDate.text.toString()
                 val eircode = layout.eircode.text.toString()
-                val selectedRadioButton = layout.root.findViewById<RadioButton>(selectedRadioButtonId)
+                val selectedRadioButton =
+                    layout.root.findViewById<RadioButton>(selectedRadioButtonId)
                 val category = selectedRadioButton?.text.toString()
                 Timber.i("PatientFragment: New Patient Data: $patientNumber, $firstName, $lastName, $birthDate, $eircode, $category")
 
-                patientViewModel.addPatient(PatientModel(
-                    patientNumber = patientNumber,
-                    firstName = firstName,
-                    lastName = lastName,
-                    birthDate = birthDate,
-                    eircode = eircode,
-                    category = category
-                ))
-
-                Timber.i("Patient Data: $patientNumber, $firstName, $lastName, $birthDate, $eircode, $category")
+                patientViewModel.addPatient(
+                    loggedInViewModel.liveFirebaseUser, PatientModel(
+                        patientNumber = patientNumber,
+                        firstName = firstName,
+                        lastName = lastName,
+                        birthDate = birthDate,
+                        eircode = eircode,
+                        category = category,
+                        email = loggedInViewModel.liveFirebaseUser.value?.email!!
+                    )
+                )
             }
         }
     }

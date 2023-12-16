@@ -1,6 +1,7 @@
 package com.mobile.communihealthv2.ui.patientlist
 
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -11,13 +12,16 @@ import android.view.ViewGroup
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mobile.communihealthv2.R
 import com.mobile.communihealthv2.adapters.PatientAdapter
@@ -25,6 +29,12 @@ import com.mobile.communihealthv2.adapters.PatientClickListener
 import com.mobile.communihealthv2.databinding.FragmentPatientListBinding
 import com.mobile.communihealthv2.main.Communihealthv2App
 import com.mobile.communihealthv2.models.PatientModel
+import com.mobile.communihealthv2.ui.auth.LoggedInViewModel
+import com.mobile.communihealthv2.utils.SwipeToDeleteCallback
+import com.mobile.communihealthv2.utils.SwipeToEditCallback
+import com.mobile.communihealthv2.utils.createLoader
+import com.mobile.communihealthv2.utils.hideLoader
+import com.mobile.communihealthv2.utils.showLoader
 import timber.log.Timber
 
 class PatientListFragment : Fragment() , PatientClickListener {
@@ -32,8 +42,9 @@ class PatientListFragment : Fragment() , PatientClickListener {
     lateinit var app: Communihealthv2App
     private var _fragBinding: FragmentPatientListBinding? = null
     private val fragBinding get() = _fragBinding!!
-
-    private lateinit var patientListViewModel: PatientListViewModel
+    lateinit var loader: AlertDialog
+    private val patientListViewModel: PatientListViewModel by activityViewModels()
+    private val loggedInViewModel: LoggedInViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,18 +59,50 @@ class PatientListFragment : Fragment() , PatientClickListener {
         _fragBinding = FragmentPatientListBinding.inflate(inflater, container, false)
         val root = fragBinding.root
         setupMenu()
+        loader = createLoader(requireActivity())
+
         fragBinding.recyclerView.layoutManager = LinearLayoutManager(activity)
-        patientListViewModel = ViewModelProvider(this).get(PatientListViewModel::class.java)
-        patientListViewModel.observablePatientsList.observe(viewLifecycleOwner, Observer { patients ->
-            patients?.let { render(patients) }
-        })
-        val fab: FloatingActionButton = fragBinding.fab
-        fab.setOnClickListener {
+        fragBinding.fab.setOnClickListener {
             val action = PatientListFragmentDirections.actionPatientListFragmentToPatientFragment()
             findNavController().navigate(action)
         }
+
+        showLoader(loader, "Downloading Patients")
+        patientListViewModel.observablePatientsList.observe(viewLifecycleOwner, Observer { patients ->
+            patients?.let {
+                render(patients as ArrayList<PatientModel>)
+                hideLoader(loader)
+                checkSwipeRefresh()
+            }
+        })
+        setSwipeRefresh()
+
+        val swipeDeleteHandler = object : SwipeToDeleteCallback(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                showLoader(loader, "Deleting Patient")
+                val adapter = fragBinding.recyclerView.adapter as PatientAdapter
+                adapter.removeAt(viewHolder.adapterPosition)
+                patientListViewModel.delete(
+                    patientListViewModel.liveFirebaseUser.value?.uid!!,
+                    (viewHolder.itemView.tag as PatientModel).uid!!
+                )
+
+                hideLoader(loader)
+            }
+        }
+        val itemTouchDeleteHelper = ItemTouchHelper(swipeDeleteHandler)
+        itemTouchDeleteHelper.attachToRecyclerView(fragBinding.recyclerView)
+
+        val swipeEditHandler = object : SwipeToEditCallback(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                onPatientClick(viewHolder.itemView.tag as PatientModel)
+            }
+        }
+        val itemTouchEditHelper = ItemTouchHelper(swipeEditHandler)
+        itemTouchEditHelper.attachToRecyclerView(fragBinding.recyclerView)
         return root
     }
+
     private fun setupMenu() {
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
             override fun onPrepareMenu(menu: Menu) {
@@ -80,7 +123,7 @@ class PatientListFragment : Fragment() , PatientClickListener {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
-    private fun render(patientsList: List<PatientModel>) {
+    private fun render(patientsList: ArrayList<PatientModel>) {
         Timber.i("PatientListFragment: render - Patients list size: ${patientsList.size}")
         fragBinding.recyclerView.adapter = PatientAdapter(patientsList, this)
         if (patientsList.isEmpty()) {
@@ -91,21 +134,39 @@ class PatientListFragment : Fragment() , PatientClickListener {
             fragBinding.patientsNotFound.visibility = View.GONE
         }
     }
+
     override fun onPatientClick(patient: PatientModel) {
-        Timber.i("PatientListFragment: onPatientClick - Patient ID: ${patient.patientId}")
-        val action = PatientListFragmentDirections.actionPatientListFragmentToPatientDetailFragment(patient.patientId)
+        val action =
+            PatientListFragmentDirections.actionPatientListFragmentToPatientDetailFragment(patient.uid!!)
         findNavController().navigate(action)
+    }
+
+    private fun setSwipeRefresh() {
+        fragBinding.swiperefresh.setOnRefreshListener {
+            fragBinding.swiperefresh.isRefreshing = true
+            showLoader(loader, "Downloading Patients")
+            patientListViewModel.load()
+        }
+    }
+
+    private fun checkSwipeRefresh() {
+        if (fragBinding.swiperefresh.isRefreshing)
+            fragBinding.swiperefresh.isRefreshing = false
     }
 
     override fun onResume() {
         super.onResume()
-        Timber.i("PatientListFragment: onResume")
-        patientListViewModel.load()
+        showLoader(loader, "Downloading Patients")
+        loggedInViewModel.liveFirebaseUser.observe(viewLifecycleOwner, Observer { firebaseUser ->
+            if (firebaseUser != null) {
+                patientListViewModel.liveFirebaseUser.value = firebaseUser
+                patientListViewModel.load()
+            }
+        })
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Timber.i("PatientListFragment: onDestroyView")
-        _fragBinding = null
+        override fun onDestroyView() {
+            super.onDestroyView()
+            Timber.i("PatientListFragment: onDestroyView")
+            _fragBinding = null
+        }
     }
-}

@@ -3,7 +3,8 @@ package com.mobile.communihealthv2.ui.patient
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mobile.communihealthv2.models.PatientManager
+import com.google.firebase.auth.FirebaseUser
+import com.mobile.communihealthv2.firebase.FirebaseDBManager
 import com.mobile.communihealthv2.models.PatientModel
 
 class PatientViewModel : ViewModel() {
@@ -13,9 +14,10 @@ class PatientViewModel : ViewModel() {
     val observableStatus: LiveData<Boolean>
         get() = status
 
-    fun addPatient(patient: PatientModel) {
+    fun addPatient(firebaseUser: MutableLiveData<FirebaseUser>,
+                    patient: PatientModel) {
         status.value = try {
-            PatientManager.create(patient)
+            FirebaseDBManager.create(firebaseUser,patient)
             true
         } catch (e: IllegalArgumentException) {
             false

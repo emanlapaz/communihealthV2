@@ -1,8 +1,11 @@
 package com.mobile.communihealthv2.ui.home
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -10,12 +13,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseUser
 import com.mobile.communihealthv2.R
 import com.mobile.communihealthv2.databinding.HomeBinding
@@ -35,28 +35,38 @@ class Home : AppCompatActivity() {
 
         homeBinding = HomeBinding.inflate(layoutInflater)
         setContentView(homeBinding.root)
-        drawerLayout = homeBinding.drawerLayout
+
+        // Set up the toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val navHostFragment = supportFragmentManager.
-        findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        // Initialize drawer layout
+        drawerLayout = homeBinding.drawerLayout
+
+        // Obtain the NavController from the NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
+        // Set up AppBarConfiguration with top-level destinations and drawer layout
         appBarConfiguration = AppBarConfiguration(setOf(
             R.id.patientFragment, R.id.patientListFragment, R.id.aboutscreenFragment), drawerLayout)
+
+        // Set up ActionBar with NavController
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        // Set up NavigationView with NavController
         val navView = homeBinding.navView
         navView.setupWithNavController(navController)
     }
+
 
     public override fun onStart() {
         super.onStart()
         loggedInViewModel = ViewModelProvider(this).get(LoggedInViewModel::class.java)
         loggedInViewModel.liveFirebaseUser.observe(this, Observer { firebaseUser ->
-            if (firebaseUser != null)
+            if (firebaseUser != null) {
                 updateNavHeader(loggedInViewModel.liveFirebaseUser.value!!)
+            }
         })
 
         loggedInViewModel.loggedOut.observe(this, Observer { loggedout ->
@@ -76,9 +86,8 @@ class Home : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    fun signOut() {
+    fun signOut(item: MenuItem) {
         loggedInViewModel.logOut()
-        //Launch Login activity and clear the back stack to stop navigating back to the Home activity
         val intent = Intent(this, Login::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
