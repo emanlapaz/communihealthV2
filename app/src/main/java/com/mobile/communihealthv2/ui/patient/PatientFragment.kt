@@ -17,6 +17,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.mobile.communihealthv2.R
 import com.mobile.communihealthv2.databinding.FragmentPatientBinding
@@ -68,7 +69,7 @@ class PatientFragment : Fragment() {
         }
     }
 
-   fun setButtonListener(layout: FragmentPatientBinding) {
+    private fun setButtonListener(layout: FragmentPatientBinding) {
         layout.savePatientButton.setOnClickListener {
             Timber.i("PatientFragment: Save button clicked")
             val selectedRadioButtonId = layout.category.checkedRadioButtonId
@@ -79,8 +80,7 @@ class PatientFragment : Fragment() {
                 val lastName = layout.lastName.text.toString()
                 val birthDate = layout.birthDate.text.toString()
                 val eircode = layout.eircode.text.toString()
-                val selectedRadioButton =
-                    layout.root.findViewById<RadioButton>(selectedRadioButtonId)
+                val selectedRadioButton = layout.root.findViewById<RadioButton>(selectedRadioButtonId)
                 val category = selectedRadioButton?.text.toString()
                 Timber.i("PatientFragment: New Patient Data: $patientNumber, $firstName, $lastName, $birthDate, $eircode, $category")
 
@@ -95,10 +95,12 @@ class PatientFragment : Fragment() {
                         email = loggedInViewModel.liveFirebaseUser.value?.email!!
                     )
                 )
+
+                // Navigate to PatientListView after saving the patient
+                findNavController().navigate(R.id.action_patientFragment_to_patientListFragment)
             }
         }
     }
-
     private fun setupMenu() {
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
             override fun onPrepareMenu(menu: Menu) {
