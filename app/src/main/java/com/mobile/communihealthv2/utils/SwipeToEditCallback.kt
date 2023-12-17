@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.communihealthv2.R
+import com.mobile.communihealthv2.adapters.PatientAdapter
 
 
 abstract class SwipeToEditCallback(context: Context) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
@@ -19,13 +20,7 @@ abstract class SwipeToEditCallback(context: Context) : ItemTouchHelper.SimpleCal
     private val clearPaint = Paint().apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
 
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
-        /**
-         * To disable "swipe" for specific item return 0 here.
-         * For example:
-         * if (viewHolder?.itemViewType == YourAdapter.SOME_TYPE) return 0
-         * if (viewHolder?.adapterPosition == 0) return 0
-         */
-        if (viewHolder.adapterPosition == 10) return 0
+        if ((viewHolder as PatientAdapter.MainHolder).readOnlyRow) return 0
         return super.getMovementFlags(recyclerView, viewHolder)
     }
 

@@ -6,7 +6,7 @@
     <string name="cancelPatientButton">Cancel</string>
     <string name="saveDetailsButton">Save Details</string>
     <string name="patientMapButton">Address Map</string>
-    <string name="patientImgButton">Photo</string>
+    <string name="patientImgButton">Upload Image</string>
     <string name="editPatientButton">Edit Details</string>
     <string name="savePatientButton">Save Patient Details</string>
     <string name="homehelp">Home Help</string>

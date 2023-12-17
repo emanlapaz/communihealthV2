@@ -10,10 +10,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.firebase.storage.FirebaseStorage
 import com.mobile.communihealthv2.R
 import com.mobile.communihealthv2.databinding.FragmentPatientDetailBinding
 import com.mobile.communihealthv2.ui.auth.LoggedInViewModel
 import com.mobile.communihealthv2.ui.patientlist.PatientListViewModel
+import com.squareup.picasso.Picasso
 import timber.log.Timber
 
 class PatientDetailFragment : Fragment() {
@@ -68,9 +70,25 @@ class PatientDetailFragment : Fragment() {
 
     private fun render() {
         Timber.i("PatientDetailFragment: render called")
-        //fragBinding.patient = detailViewModel.observablePatient.value
+        val patient = detailViewModel.observablePatient.value
         fragBinding.patientvm = detailViewModel
-        Timber.i("Retrofit fragBinding.patientvm == $fragBinding.patientvm")
+        if (!patient?.patientImage.isNullOrEmpty()) {
+            val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(patient!!.patientImage)
+
+            storageReference.downloadUrl.addOnSuccessListener { imageUrl ->
+                Picasso.get()
+                    .load(imageUrl)
+                    .placeholder(R.drawable.profile) // Placeholder image
+                    .error(R.drawable.profile) // Error image (optional)
+                    .fit()
+                    .centerInside()
+                    .into(fragBinding.patientImageView)
+            }.addOnFailureListener { exception ->
+                // Handle failure to load image
+                Timber.e(exception, "Failed to load patient image from Firebase Storage")
+            }
+        }
+
     }
 
     override fun onResume() {

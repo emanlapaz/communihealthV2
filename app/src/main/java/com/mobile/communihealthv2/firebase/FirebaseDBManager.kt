@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.mobile.communihealthv2.firebase.FirebaseDBManager.database
 import com.mobile.communihealthv2.models.PatientModel
 import com.mobile.communihealthv2.models.PatientStore
 import timber.log.Timber
@@ -16,7 +17,25 @@ object FirebaseDBManager : PatientStore {
     var database: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     override fun findAll(patientsList: MutableLiveData<List<PatientModel>>) {
-            TODO("Not yet implemented")
+        database.child("patients")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    Timber.i("Firebase Patient error : ${error.message}")
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val localList = ArrayList<PatientModel>()
+                    val children = snapshot.children
+                    children.forEach {
+                        val patient = it.getValue(PatientModel::class.java)
+                        localList.add(patient!!)
+                    }
+                    database.child("patients")
+                        .removeEventListener(this)
+
+                    patientsList.value = localList
+                }
+            })
     }
 
     override fun findAll(userid: String, patientsList: MutableLiveData<List<PatientModel>>) {
@@ -91,4 +110,25 @@ object FirebaseDBManager : PatientStore {
 
         database.updateChildren(childUpdate)
     }
+}
+
+fun updateImageRef(userid: String,imageUri: String) {
+
+    val userPatients = database.child("user-patients").child(userid)
+    val allPatients = database.child("patients")
+
+    userPatients.addListenerForSingleValueEvent(
+        object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {}
+            override fun onDataChange(snapshot: DataSnapshot) {
+                snapshot.children.forEach {
+                    //Update Users imageUri
+                    it.ref.child("patientImage").setValue(imageUri)
+                    //Update all donations that match 'it'
+                    val patient = it.getValue(PatientModel::class.java)
+                    allPatients.child(patient!!.uid!!)
+                        .child("patientImage").setValue(imageUri)
+                }
+            }
+        })
 }

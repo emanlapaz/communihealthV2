@@ -22,6 +22,11 @@
 
     <style name="Theme.Communihealthv2.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="toggleStyle">
+        <item name="colorControlActivated">@color/colorWhite</item>
+        <item name="colorControlHighlight">@color/black</item>
+    </style>
+
     <!-- Activity with no Title -->
     <style name="ThemeOverlay.MyNoTitleActivity" parent="Theme.Communihealthv2">
         <item name="windowActionBar">false</item>

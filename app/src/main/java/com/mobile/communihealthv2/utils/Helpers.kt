@@ -1,9 +1,12 @@
 package com.mobile.communihealthv2.utils
 
 import android.app.AlertDialog
+import android.graphics.Color
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import com.makeramen.roundedimageview.RoundedTransformationBuilder
 import com.mobile.communihealthv2.R
+import com.squareup.picasso.Transformation
 
 fun createLoader(activity: FragmentActivity) : AlertDialog {
     val loaderBuilder = AlertDialog.Builder(activity)
@@ -43,3 +46,12 @@ fun serviceAvailableMessage(activity: FragmentActivity) {
         Toast.LENGTH_LONG
     ).show()
 }
+
+fun customTransformation() : Transformation =
+    RoundedTransformationBuilder()
+        .borderColor(Color.WHITE)
+        .borderWidthDp(2F)
+        .cornerRadiusDp(35F)
+        .oval(false)
+        .build()
+

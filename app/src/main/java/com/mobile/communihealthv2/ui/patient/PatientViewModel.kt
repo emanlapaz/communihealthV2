@@ -1,5 +1,6 @@
 package com.mobile.communihealthv2.ui.patient
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +10,8 @@ import com.mobile.communihealthv2.models.PatientModel
 
 class PatientViewModel : ViewModel() {
 
+    private val _selectedImageUri = MutableLiveData<Uri>()
+    val selectedImageUri: LiveData<Uri> = _selectedImageUri
     private val status = MutableLiveData<Boolean>()
 
     val observableStatus: LiveData<Boolean>
@@ -22,5 +25,9 @@ class PatientViewModel : ViewModel() {
         } catch (e: IllegalArgumentException) {
             false
         }
+    }
+    fun onImageSelected(uri: Uri) {
+        _selectedImageUri.value = uri
+        // Additional processing if needed
     }
 }

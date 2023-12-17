@@ -32,23 +32,25 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.031"
+            app:layout_constraintHorizontal_bias="0.715"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.033" />
+            app:layout_constraintVertical_bias="0.107" />
 
         <TextView
-            android:layout_width="238dp"
+            android:layout_width="194dp"
             android:layout_height="30dp"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="87dp"
             android:text="@{patientvm.observablePatient.category}"
             android:textSize="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/editScreen"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.157"
-            app:layout_constraintStart_toEndOf="@+id/communihealthSubtitle"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.044" />
+            app:layout_constraintHorizontal_bias="0.884"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/communihealthSubtitle"
+            app:layout_constraintVertical_bias="0.0" />
 
         <RadioGroup
             android:id="@+id/category"
@@ -57,10 +59,10 @@
             android:layout_alignParentStart="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintHorizontal_bias="0.529"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.222">
+            app:layout_constraintVertical_bias="0.529">
 
             <RadioButton
                 android:id="@+id/fullcare"
@@ -92,80 +94,84 @@
                 android:text="@string/homehelp" />
         </RadioGroup>
 
+        <ImageView
+            android:id="@+id/patientImageView"
+            android:layout_width="166dp"
+            android:layout_height="157dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.073"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.106" />
+
         <EditText
-            android:id="@+id/patientNumber"
+            android:id="@+id/firstName"
             android:layout_width="345dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="336dp"
-            android:text="@={patientvm.observablePatient.patientNumber}"
-            android:hint="@string/patientNumber"
+            android:layout_height="45dp"
+            android:layout_marginTop="496dp"
+            android:hint="@string/firstName"
+            android:text="@={patientvm.observablePatient.firstName}"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/firstName"
-            android:layout_width="345dp"
-            android:layout_height="55dp"
-            android:text="@={patientvm.observablePatient.firstName}"
-            android:hint="@string/firstName"
-            android:textAppearance="@android:style/TextAppearance.Material.Medium"
-            app:layout_constraintTop_toBottomOf="@+id/patientNumber"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-    <EditText
             android:id="@+id/lastName"
             android:layout_width="345dp"
-            android:layout_height="55dp"
-            android:text="@={patientvm.observablePatient.lastName}"
+            android:layout_height="45dp"
             android:hint="@string/lastName"
+            android:text="@={patientvm.observablePatient.lastName}"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
-            app:layout_constraintTop_toBottomOf="@+id/firstName"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/firstName" />
 
-    <EditText
-        android:id="@+id/birthDate"
-        android:layout_width="345dp"
-        android:layout_height="55dp"
-        android:text="@={patientvm.observablePatient.birthDate}"
-        android:hint="@string/birthdate"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        app:layout_constraintTop_toBottomOf="@+id/lastName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <EditText
+            android:id="@+id/birthDate"
+            android:layout_width="345dp"
+            android:layout_height="45dp"
+            android:hint="@string/birthdate"
+            android:text="@={patientvm.observablePatient.birthDate}"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lastName" />
 
-    <EditText
-        android:id="@+id/eircode"
-        android:layout_width="345dp"
-        android:layout_height="55dp"
-        android:text="@={patientvm.observablePatient.eircode}"
-        android:hint="@string/eircode"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        app:layout_constraintTop_toBottomOf="@+id/birthDate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <EditText
+            android:id="@+id/eircode"
+            android:layout_width="345dp"
+            android:layout_height="45dp"
+            android:hint="@string/eircode"
+            android:text="@={patientvm.observablePatient.eircode}"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/birthDate"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/editPatientButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Save Changes"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/deletePatientButton"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/editPatientButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Save Changes"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/deletePatientButton"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/deletePatientButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Delete"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editPatientButton" />
+        <Button
+            android:id="@+id/deletePatientButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editPatientButton" />
 
         <TextView
             android:id="@+id/editScreen"
@@ -175,7 +181,7 @@
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             app:layout_constraintBottom_toTopOf="@+id/category"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.186"
+            app:layout_constraintHorizontal_bias="0.22"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/communihealthSubtitle"
             app:layout_constraintVertical_bias="1.0" />

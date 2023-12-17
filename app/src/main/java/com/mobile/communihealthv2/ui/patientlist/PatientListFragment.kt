@@ -9,6 +9,8 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -111,6 +113,21 @@ class PatientListFragment : Fragment() , PatientClickListener {
 
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.menu_patientlist, menu)
+
+                val item = menu.findItem(R.id.togglePatients) as MenuItem
+                item.setActionView(R.layout.togglebutton_layout)
+                val togglePatients: SwitchCompat = item.actionView!!.findViewById(R.id.toggleButton)
+                togglePatients.isChecked = false
+
+                togglePatients.setOnCheckedChangeListener { _, isChecked ->
+                    if (isChecked) {
+                        patientListViewModel.loadAll()
+                        Toast.makeText(requireContext(), "Viewing all patients...", Toast.LENGTH_SHORT).show()
+                    } else {
+                        patientListViewModel.load()
+                        Toast.makeText(requireContext(), "Loading patients...", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -125,7 +142,7 @@ class PatientListFragment : Fragment() , PatientClickListener {
 
     private fun render(patientsList: ArrayList<PatientModel>) {
         Timber.i("PatientListFragment: render - Patients list size: ${patientsList.size}")
-        fragBinding.recyclerView.adapter = PatientAdapter(patientsList, this)
+        fragBinding.recyclerView.adapter = PatientAdapter(patientsList, this, patientListViewModel.readOnly.value!!)
         if (patientsList.isEmpty()) {
             fragBinding.recyclerView.visibility = View.GONE
             fragBinding.patientsNotFound.visibility = View.VISIBLE
@@ -138,6 +155,7 @@ class PatientListFragment : Fragment() , PatientClickListener {
     override fun onPatientClick(patient: PatientModel) {
         val action =
             PatientListFragmentDirections.actionPatientListFragmentToPatientDetailFragment(patient.uid!!)
+        if(!patientListViewModel.readOnly.value!!)
         findNavController().navigate(action)
     }
 
@@ -145,7 +163,11 @@ class PatientListFragment : Fragment() , PatientClickListener {
         fragBinding.swiperefresh.setOnRefreshListener {
             fragBinding.swiperefresh.isRefreshing = true
             showLoader(loader, "Downloading Patients")
-            patientListViewModel.load()
+            if(patientListViewModel.readOnly.value!!)
+                patientListViewModel.loadAll()
+
+            else
+                patientListViewModel.load()
         }
     }
 
