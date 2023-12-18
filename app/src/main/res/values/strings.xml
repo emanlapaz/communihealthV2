@@ -39,7 +39,7 @@
     <string name="patientsNotFound">No Patients Yet...\nGo Add a Patient!</string>
     <string name="patientError">Error : Couldn\'t Add a Patient...</string>
     <string name="editScreen">Edit Patient Details:</string>
-
+    <string name="action_patientLocation">Patient Location</string>
     <string name="messageLoading">Please Wait while the Donations are Loading...</string>
 
     <string name="label_emailpassword">Email/Password Authentication</string>
@@ -62,6 +62,7 @@
     <string name="firebase_user_management">Firebase User Management</string>
     <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
     <string name="emailpassword_title_text">Please Login Below</string>
+
     <string name="default_web_client_id">974261957589-deqhm60cmistjdvvet489efopd3gb9mr.apps.googleusercontent.com</string>
-    <string name="action_patientLocation">Patient Location</string>
+    <string name="mapApi">AIzaSyCwCF_qNoUb30tb6PFeXzfEbqfrIkZKI8Y</string>
 </resources>

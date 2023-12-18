@@ -16,7 +16,9 @@ data class PatientModel (var patientId: Long = 0,
                          var category: String = "",
                          var patientImage: String = "",
                          var uid: String? ="",
-                         var email: String? = "joe@bloggs.com"
+                         var email: String? = "joe@bloggs.com",
+                         var latitude: Double = 0.0,
+                         var longitude: Double = 0.0
                          ): Parcelable
 {
     @Exclude
@@ -30,7 +32,9 @@ data class PatientModel (var patientId: Long = 0,
             "eircode" to eircode,
             "category" to category,
             "patientImage" to patientImage,
-            "email" to email
+            "email" to email,
+            "latitude" to latitude,
+            "longitude" to longitude
         )
     }
 }

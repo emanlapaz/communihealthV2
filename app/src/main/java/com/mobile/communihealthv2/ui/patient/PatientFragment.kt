@@ -29,6 +29,7 @@ import com.mobile.communihealthv2.databinding.FragmentPatientBinding
 import com.mobile.communihealthv2.firebase.FirebaseImageManager
 import com.mobile.communihealthv2.models.PatientModel
 import com.mobile.communihealthv2.ui.auth.LoggedInViewModel
+import com.mobile.communihealthv2.ui.map.MapsViewModel
 import com.mobile.communihealthv2.ui.patientlist.PatientListViewModel
 import timber.log.Timber
 
@@ -41,6 +42,7 @@ class PatientFragment : Fragment() {
     private lateinit var patientViewModel: PatientViewModel
     private val patientListViewModel: PatientListViewModel by activityViewModels()
     private val loggedInViewModel : LoggedInViewModel by activityViewModels()
+    private val mapsViewModel: MapsViewModel by activityViewModels()
     private var selectedImageUri: Uri? = null
 
     private val imagePickerLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -131,7 +133,9 @@ class PatientFragment : Fragment() {
                                 eircode = eircode,
                                 category = category,
                                 email = loggedInViewModel.liveFirebaseUser.value?.email!!,
-                                patientImage = imageUrl // Include the image URL in the patient model
+                                patientImage = imageUrl, // Include the image URL in the patient model
+                                latitude = mapsViewModel.currentLocation.value!!.latitude, //CHECK THIS OUT, ADD NA OPTION TO USE LOCATION AS PATIENT ADDRESS
+                                longitude = mapsViewModel.currentLocation.value!!.longitude
                             )
                         )
 

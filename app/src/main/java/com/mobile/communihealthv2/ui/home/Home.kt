@@ -1,9 +1,12 @@
 package com.mobile.communihealthv2.ui.home
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.location.Location
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -23,6 +26,10 @@ import com.mobile.communihealthv2.databinding.HomeBinding
 import com.mobile.communihealthv2.databinding.NavHeaderBinding
 import com.mobile.communihealthv2.ui.auth.LoggedInViewModel
 import com.mobile.communihealthv2.ui.auth.Login
+import com.mobile.communihealthv2.ui.map.MapsViewModel
+import com.mobile.communihealthv2.utils.checkLocationPermissions
+import com.mobile.communihealthv2.utils.isPermissionGranted
+import timber.log.Timber
 
 class Home : AppCompatActivity() {
 
@@ -31,7 +38,7 @@ class Home : AppCompatActivity() {
     private lateinit var navHeaderBinding: NavHeaderBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var loggedInViewModel: LoggedInViewModel
-
+    private val mapsViewModel : MapsViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -48,9 +55,11 @@ class Home : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(setOf(
             R.id.patientFragment, R.id.patientListFragment, R.id.mapsFragment,R.id.aboutscreenFragment), drawerLayout)
-
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        if(checkLocationPermissions(this)) {
+            mapsViewModel.updateCurrentLocation()
+        }
         // Modified: Set up Navigation for items that require navigation and manually handle sign-out
         homeBinding.navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -110,4 +119,20 @@ class Home : AppCompatActivity() {
         // A little toast to bid farewell
         Toast.makeText(this, "You've been signed out. See you again!", Toast.LENGTH_SHORT).show()
     }
+
+    @SuppressLint("MissingPermission")
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (isPermissionGranted(requestCode, grantResults))
+            mapsViewModel.updateCurrentLocation()
+        else {
+            // permissions denied, so use a default location
+            mapsViewModel.currentLocation.value = Location("Default").apply {
+                latitude = 53.220566
+                longitude = -6.659308
+            }
+        }
+        Timber.i("LOC : %s", mapsViewModel.currentLocation.value)
+    }
 }
+
