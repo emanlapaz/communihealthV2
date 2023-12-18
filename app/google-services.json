@@ -13,7 +13,20 @@
           "package_name": "com.mobile.communihealthv2"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "974261957589-deqhm60cmistjdvvet489efopd3gb9mr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobile.communihealthv2",
+            "certificate_hash": "ec11d548175f3052dfbf49d50c32f40b20355eb4"
+          }
+        },
+        {
+          "client_id": "974261957589-h93f8ssbqqv5nv2o6l8lfocc1h4skdnb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDbDh5ey2-4ztKfdZCrNblQV-oGnEJz-pg"
@@ -21,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974261957589-0c14kfseb2hbe1msob6200eh58ucutdo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
