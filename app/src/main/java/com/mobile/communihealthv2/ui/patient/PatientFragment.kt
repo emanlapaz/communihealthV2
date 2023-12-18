@@ -153,7 +153,7 @@ class PatientFragment : Fragment() {
 
                 firebaseImageManager.uploadImageToFirebase(
                     loggedInViewModel.liveFirebaseUser.value?.uid ?: "",
-                    imageBitmap, true) { imageUrl ->
+                    imageBitmap) { imageUrl ->
                     if (imageUrl != null) {
                         patientViewModel.addPatient(
                             loggedInViewModel.liveFirebaseUser, PatientModel(

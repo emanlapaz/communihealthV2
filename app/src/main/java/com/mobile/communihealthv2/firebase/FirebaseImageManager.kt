@@ -15,49 +15,32 @@ import java.io.ByteArrayOutputStream
 class FirebaseImageManager {
 
     private val storage = FirebaseStorage.getInstance().reference
-    var imageUri = MutableLiveData<Uri>()
 
     fun uploadImageToFirebase(
         userid: String,
         bitmap: Bitmap,
-        updating: Boolean,
         callback: (String?) -> Unit
     ) {
-        val imageRef = storage.child("photos").child("${userid}.jpg")
-        val baos = ByteArrayOutputStream()
-        lateinit var uploadTask: UploadTask
+        // Generate a unique filename for each image
+        val filename = "${userid}_${System.currentTimeMillis()}.jpg"
+        val imageRef = storage.child("photos/$filename")
 
+        val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
 
-        imageRef.metadata
-            .addOnSuccessListener {
-                if (updating) {
-                    uploadTask = imageRef.putBytes(data)
-                    uploadTask
-                        .addOnSuccessListener { taskSnapshot ->
-                            taskSnapshot.metadata?.reference?.downloadUrl
-                                ?.addOnCompleteListener { task ->
-                                    val imageUrl = task.result?.toString()
-                                    callback(imageUrl)
-
-                                }
-                        }
-                }
+        val uploadTask = imageRef.putBytes(data)
+        uploadTask.addOnSuccessListener { taskSnapshot ->
+            taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener { uri ->
+                val imageUrl = uri.toString()
+                callback(imageUrl)
+            }!!.addOnFailureListener {
+                callback(null)
             }
-            .addOnFailureListener {
-                uploadTask = imageRef.putBytes(data)
-                uploadTask
-                    .addOnSuccessListener { taskSnapshot ->
-                        taskSnapshot.metadata?.reference?.downloadUrl
-                            ?.addOnCompleteListener { task ->
-                                val imageUrl = task.result?.toString()
-                                callback(imageUrl)
-                            }
-                    }
-            }
+        }.addOnFailureListener {
+            callback(null)
+        }.addOnCompleteListener {
+            baos.close()
+        }
     }
 }
-
-
-
