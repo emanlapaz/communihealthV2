@@ -13,6 +13,10 @@
             android:icon="@drawable/ic_menu_patientlist"
             android:title="@string/action_patientlist" />
         <item
+            android:id="@+id/mapsFragment"
+            android:icon="@drawable/ic_menu_location"
+            android:title="@string/action_patientLocation" />
+        <item
             android:id="@+id/aboutscreenFragment"
             android:icon="@drawable/ic_menu_aboutscreen"
             android:title="@string/action_about" />

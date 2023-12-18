@@ -55,5 +55,14 @@
             app:argType="string" />
 
     </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.mobile.communihealthv2.ui.map.MapsFragment"
+        android:label="@string/action_patientLocation"
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_patientDetailFragment2"
+            app:destination="@id/patientDetailFragment" />
+    </fragment>
 
 </navigation>
