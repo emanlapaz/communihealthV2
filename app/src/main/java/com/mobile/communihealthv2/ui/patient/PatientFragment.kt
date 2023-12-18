@@ -1,8 +1,10 @@
 package com.mobile.communihealthv2.ui.patient
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
+import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -24,6 +26,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.google.android.gms.maps.model.LatLng
 import com.mobile.communihealthv2.R
 import com.mobile.communihealthv2.databinding.FragmentPatientBinding
 import com.mobile.communihealthv2.firebase.FirebaseImageManager
@@ -32,6 +35,7 @@ import com.mobile.communihealthv2.ui.auth.LoggedInViewModel
 import com.mobile.communihealthv2.ui.map.MapsViewModel
 import com.mobile.communihealthv2.ui.patientlist.PatientListViewModel
 import timber.log.Timber
+import java.io.IOException
 
 class PatientFragment : Fragment() {
 
@@ -44,6 +48,8 @@ class PatientFragment : Fragment() {
     private val loggedInViewModel : LoggedInViewModel by activityViewModels()
     private val mapsViewModel: MapsViewModel by activityViewModels()
     private var selectedImageUri: Uri? = null
+    private var patientLatitude: Double = 53.21583
+    private var patientLongitude: Double = 53.21583 -6.66694
 
     private val imagePickerLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
@@ -87,8 +93,35 @@ class PatientFragment : Fragment() {
             val intent = Intent.createChooser(chooseFile, getString(R.string.patientImgButton))
             imagePickerLauncher.launch(intent)
         }
+
+        fragBinding.uploadLocationButton.setOnClickListener {
+            setLocation()
+        }
+
+        fragBinding.searchEircode.setOnClickListener {
+           searchEircode()
+        }
+
         setButtonListener(fragBinding)
         return root
+    }
+
+    private fun setLocation() {
+        mapsViewModel.currentLocation.value?.let { location ->
+            patientLatitude = location.latitude
+            patientLongitude = location.longitude
+            Toast.makeText(context, "Patient Address set Current Location", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun searchEircode() {
+        val eircode = fragBinding.eircode.text.toString()
+        val latLng = getLatLngFromEircode(eircode, requireContext())
+        latLng?.let {
+            patientLatitude = it.latitude
+            patientLongitude = it.longitude
+            Toast.makeText(context, "Location set from Eircode: ${eircode}", Toast.LENGTH_SHORT).show()
+        } ?: Toast.makeText(context, "Eircode Search Failed", Toast.LENGTH_SHORT).show()
     }
 
     private fun render(status: Boolean) {
@@ -117,14 +150,11 @@ class PatientFragment : Fragment() {
 
                 // Upload the image to Firebase Storage
                 val imageBitmap = (fragBinding.patientImageView.drawable as BitmapDrawable).bitmap
+
                 firebaseImageManager.uploadImageToFirebase(
                     loggedInViewModel.liveFirebaseUser.value?.uid ?: "",
-                    imageBitmap,
-                    true
-                ) { imageUrl ->
-                    // Callback when image upload is complete
+                    imageBitmap, true) { imageUrl ->
                     if (imageUrl != null) {
-                        // Save the patient details with the image URL
                         patientViewModel.addPatient(
                             loggedInViewModel.liveFirebaseUser, PatientModel(
                                 firstName = firstName,
@@ -133,23 +163,19 @@ class PatientFragment : Fragment() {
                                 eircode = eircode,
                                 category = category,
                                 email = loggedInViewModel.liveFirebaseUser.value?.email!!,
-                                patientImage = imageUrl, // Include the image URL in the patient model
-                                latitude = mapsViewModel.currentLocation.value!!.latitude, //CHECK THIS OUT, ADD NA OPTION TO USE LOCATION AS PATIENT ADDRESS
-                                longitude = mapsViewModel.currentLocation.value!!.longitude
+                                patientImage = imageUrl,
+                                latitude = patientLatitude,
+                                longitude = patientLongitude
                             )
                         )
-
-                        // Navigate to PatientListView after saving the patient
                         findNavController().navigate(R.id.action_patientFragment_to_patientListFragment)
                     } else {
-                        // Handle image upload failure if needed
-                        // You can display an error message to the user
+
                     }
                 }
             }
         }
     }
-
     private fun setupMenu() {
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
             override fun onPrepareMenu(menu: Menu) {
@@ -167,12 +193,28 @@ class PatientFragment : Fragment() {
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
+
+    fun getLatLngFromEircode(eircode: String, context: Context): LatLng? {
+        val geocoder = Geocoder(context)
+        try {
+            val addresses = geocoder.getFromLocationName(eircode, 1)
+            if (addresses != null) {
+                if (addresses.isNotEmpty()) {
+                    val location = addresses[0]
+                    return LatLng(location.latitude, location.longitude)
+                }
+            }
+        } catch (e: IOException) {
+            // Handle the exception
+        }
+        return null
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         Timber.i("PatientFragment: onDestroyView")
         _fragBinding = null
     }
-
     override fun onResume() {
         super.onResume()
         Timber.i("PatientFragment: onResume")

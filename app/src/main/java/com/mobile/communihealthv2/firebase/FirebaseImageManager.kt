@@ -17,7 +17,12 @@ class FirebaseImageManager {
     private val storage = FirebaseStorage.getInstance().reference
     var imageUri = MutableLiveData<Uri>()
 
-    fun uploadImageToFirebase(userid: String, bitmap: Bitmap, updating: Boolean, callback: (String?) -> Unit) {
+    fun uploadImageToFirebase(
+        userid: String,
+        bitmap: Bitmap,
+        updating: Boolean,
+        callback: (String?) -> Unit
+    ) {
         val imageRef = storage.child("photos").child("${userid}.jpg")
         val baos = ByteArrayOutputStream()
         lateinit var uploadTask: UploadTask
@@ -52,58 +57,7 @@ class FirebaseImageManager {
                     }
             }
     }
-
-    fun updateUserImage(userid: String, imageUri: Uri?, imageView: ImageView, updating: Boolean) {
-        Picasso.get().load(imageUri)
-            .resize(200, 200)
-            .memoryPolicy(MemoryPolicy.NO_CACHE)
-            .centerCrop()
-            .into(object : Target {
-                override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                    Timber.i("DX onBitmapLoaded $bitmap")
-                    uploadImageToFirebase(userid, bitmap!!, updating) { imageUrl ->
-                        // Callback when image upload is complete
-                        if (imageUrl != null) {
-                            imageView.setImageBitmap(bitmap)
-                        } else {
-                            // Handle image upload failure if needed
-                            // You can display an error message to the user
-                        }
-                    }
-                }
-
-                override fun onBitmapFailed(e: java.lang.Exception?, errorDrawable: Drawable?) {
-                    Timber.i("DX onBitmapFailed $e")
-                }
-
-                override fun onPrepareLoad(placeHolderDrawable: Drawable?) {}
-            })
-    }
-
-    fun updateDefaultImage(userid: String, resource: Int, imageView: ImageView) {
-        Picasso.get().load(resource)
-            .resize(200, 200)
-            .memoryPolicy(MemoryPolicy.NO_CACHE)
-            .centerCrop()
-            .into(object : Target {
-                override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                    Timber.i("DX onBitmapLoaded $bitmap")
-                    uploadImageToFirebase(userid, bitmap!!, false) { imageUrl ->
-                        // Callback when image upload is complete
-                        if (imageUrl != null) {
-                            imageView.setImageBitmap(bitmap)
-                        } else {
-                            // Handle image upload failure if needed
-                            // You can display an error message to the user
-                        }
-                    }
-                }
-
-                override fun onBitmapFailed(e: java.lang.Exception?, errorDrawable: Drawable?) {
-                    Timber.i("DX onBitmapFailed $e")
-                }
-
-                override fun onPrepareLoad(placeHolderDrawable: Drawable?) {}
-            })
-    }
 }
+
+
+

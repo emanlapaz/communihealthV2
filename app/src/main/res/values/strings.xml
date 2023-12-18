@@ -65,4 +65,6 @@
 
     <string name="default_web_client_id">974261957589-deqhm60cmistjdvvet489efopd3gb9mr.apps.googleusercontent.com</string>
     <string name="mapApi">AIzaSyCwCF_qNoUb30tb6PFeXzfEbqfrIkZKI8Y</string>
+    <string name="uploadLocation">Save Current Location</string>
+    <string name="searchEircodeButton">Search Eircode</string>
 </resources>

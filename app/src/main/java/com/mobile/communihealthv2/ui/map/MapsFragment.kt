@@ -89,7 +89,7 @@ class MapsFragment : Fragment() {
                     BitmapDescriptorFactory.HUE_RED
 
                 mapsViewModel.map.addMarker(
-                    MarkerOptions().position(LatLng(it.latitude, it.longitude))
+                    MarkerOptions().position(LatLng(it.latitude!!, it.longitude!!))
                         .title("${it.firstName} ${it.lastName}")
                         .snippet("${it.category} ${it.eircode}")
                         .icon(

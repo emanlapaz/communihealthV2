@@ -30,4 +30,5 @@ class PatientViewModel : ViewModel() {
         _selectedImageUri.value = uri
         // Additional processing if needed
     }
+
 }

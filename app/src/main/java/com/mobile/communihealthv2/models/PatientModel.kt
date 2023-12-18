@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 
 @IgnoreExtraProperties
 @Parcelize
-data class PatientModel (var patientId: Long = 0,
+data class PatientModel (
                          var firstName: String = "",
                          var lastName: String = "",
                          var birthDate: String = "",
@@ -17,15 +17,14 @@ data class PatientModel (var patientId: Long = 0,
                          var patientImage: String = "",
                          var uid: String? ="",
                          var email: String? = "joe@bloggs.com",
-                         var latitude: Double = 0.0,
-                         var longitude: Double = 0.0
+                         var latitude: Double? = 0.0,
+                         var longitude: Double? = 0.0
                          ): Parcelable
 {
     @Exclude
     fun toMap(): Map<String, Any?> {
         return mapOf(
             "uid" to uid,
-            "patientId" to patientId,
             "firstName" to firstName,
             "lastName" to lastName,
             "birthDate" to birthDate,

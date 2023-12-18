@@ -29,7 +29,7 @@ class PatientAdapter constructor( private var patients: ArrayList<PatientModel>,
     }
 
     fun removeAt(position: Int) {
-      patients.removeAt(position)
+        patients.removeAt(position)
         notifyItemRemoved(position)
     }
 
