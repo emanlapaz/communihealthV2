@@ -54,7 +54,7 @@ class Home : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.patientFragment, R.id.patientListFragment, R.id.mapsFragment,R.id.aboutscreenFragment), drawerLayout)
+            R.id.patientFragment, R.id.patientListFragment, R.id.mapsFragment,R.id.aboutscreenFragment, R.id.calendarFragment), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         if(checkLocationPermissions(this)) {
@@ -67,6 +67,12 @@ class Home : AppCompatActivity() {
                     signOut()
                     true
                 }
+                R.id.calendarFragment -> {
+                    // Handle the click for the Calendar item
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.calendarFragment)
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
                 else -> {
                     NavigationUI.onNavDestinationSelected(menuItem, navController)
                     drawerLayout.closeDrawer(GravityCompat.START)
@@ -74,6 +80,7 @@ class Home : AppCompatActivity() {
                 }
             }
         }
+
     }
 
     override fun onStart() {

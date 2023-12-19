@@ -16,6 +16,11 @@
             android:id="@+id/mapsFragment"
             android:icon="@drawable/ic_menu_location"
             android:title="@string/action_patientLocation" />
+
+        <item
+            android:id="@+id/calendarFragment"
+            android:icon="@drawable/calendar"
+            android:title="@string/calendar" />
         <item
             android:id="@+id/aboutscreenFragment"
             android:icon="@drawable/ic_menu_aboutscreen"

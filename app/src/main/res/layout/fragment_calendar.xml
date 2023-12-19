@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Add a CalendarView to display the calendar -->
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Event Title -->
+    <EditText
+        android:id="@+id/eventTitleEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Event Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+    <!-- Event Description -->
+    <EditText
+        android:id="@+id/eventDescriptionEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Event Description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventTitleEditText" />
+
+    <!-- Event Location -->
+    <EditText
+        android:id="@+id/eventLocationEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Event Location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventDescriptionEditText" />
+
+    <!-- Event Start Time -->
+
+    <!-- Event End Time -->
+
+    <Button
+        android:id="@+id/selectStartTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="32dp"
+        android:text="Select Start Time"
+        app:layout_constraintStart_toStartOf="@+id/eventLocationEditText"
+        app:layout_constraintTop_toBottomOf="@+id/eventLocationEditText" />
+
+    <!-- Button to Add Event -->
+    <Button
+        android:id="@+id/selectEndTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Select End Time"
+        app:layout_constraintStart_toStartOf="@+id/selectStartTimeButton"
+        app:layout_constraintTop_toBottomOf="@+id/selectStartTimeButton" />
+
+    <Button
+        android:id="@+id/addEventButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Add Event"
+        app:layout_constraintStart_toStartOf="@+id/selectEndTimeButton"
+        app:layout_constraintTop_toBottomOf="@+id/selectEndTimeButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
