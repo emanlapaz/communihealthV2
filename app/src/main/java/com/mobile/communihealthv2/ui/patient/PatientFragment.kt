@@ -1,7 +1,6 @@
 package com.mobile.communihealthv2.ui.patient
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.location.Geocoder
@@ -26,7 +25,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.snackbar.Snackbar
 import com.mobile.communihealthv2.R
 import com.mobile.communihealthv2.databinding.FragmentPatientBinding
 import com.mobile.communihealthv2.firebase.FirebaseImageManager
@@ -34,7 +33,11 @@ import com.mobile.communihealthv2.models.PatientModel
 import com.mobile.communihealthv2.ui.auth.LoggedInViewModel
 import com.mobile.communihealthv2.ui.map.MapsViewModel
 import com.mobile.communihealthv2.ui.patientlist.PatientListViewModel
-import com.mobile.communihealthv2.utils.getLatLngFromEircode
+import com.mobile.communihealthv2.utils.calculateAge
+import com.mobile.communihealthv2.utils.isFirstNameValid
+import com.mobile.communihealthv2.utils.isLastNameValid
+import com.mobile.communihealthv2.utils.isValidDate
+import com.mobile.communihealthv2.utils.showSnackbar
 import timber.log.Timber
 import java.io.IOException
 import java.util.Locale
@@ -134,7 +137,6 @@ class PatientFragment : Fragment() {
         }
     }
 
-//  TO DO!! ADD SNCKBARS, REGEX FIX ADDRESSES
     private fun searchEircode() {
         val eircode = fragBinding.eircode.text.toString()
         val geocoder = Geocoder(requireContext(), Locale.getDefault())
@@ -189,8 +191,32 @@ class PatientFragment : Fragment() {
                 val county = patientViewModel.patientCounty.value ?: ""
                 val road = patientViewModel.patientRoad.value ?: ""
                 val houseNumber = patientViewModel.patientHouseNumber.value ?: ""
-                Timber.i("PatientFragment: New Patient Data: $firstName, $lastName, $birthDate, $eircode, $category")
 
+
+                if (firstName.isEmpty() || lastName.isEmpty() || birthDate.isEmpty()) {
+                    showSnackbar(layout.root, "Please fill in all required fields.", Snackbar.LENGTH_LONG)
+                    return@setOnClickListener
+                }
+                if (!isFirstNameValid(firstName)) {
+                    showSnackbar(layout.root, "First name should contain only letters.", Snackbar.LENGTH_LONG)
+                    return@setOnClickListener
+                }
+
+                if (!isLastNameValid(lastName)) {
+                    showSnackbar(layout.root, "Last name should contain only letters.", Snackbar.LENGTH_LONG)
+                    return@setOnClickListener
+                }
+
+                if (!isValidDate(birthDate)) {
+                    showSnackbar(layout.root, "Invalid date format (dd/mm/yyyy)", Snackbar.LENGTH_LONG)
+                    return@setOnClickListener
+                }
+
+                val age = calculateAge(birthDate)
+                if (age == null) {
+                    showSnackbar(layout.root, "Input Birthdate", Snackbar.LENGTH_LONG)
+                    return@setOnClickListener
+                }
                 // Upload the image to Firebase Storage
                 val imageBitmap = (fragBinding.patientImageView.drawable as BitmapDrawable).bitmap
 
@@ -212,16 +238,19 @@ class PatientFragment : Fragment() {
                                 road = road,
                                 town = town,
                                 county = county,
-                                houseNumber = houseNumber
+                                houseNumber = houseNumber,
+                                age = age
                             )
                         )
                         findNavController().navigate(R.id.action_patientFragment_to_patientListFragment)
+                        Timber.i("PatientFragment: New Patient Data: AGE: $age")
                     } else {
 
                     }
                 }
             }
         }
+
     }
     private fun setupMenu() {
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {

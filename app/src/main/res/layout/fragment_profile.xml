@@ -17,142 +17,17 @@
         android:layout_height="match_parent"
         tools:context=".ui.profile.ProfileFragment">
 
-
         <TextView
-            android:id="@+id/age"
-            android:layout_width="140dp"
-            android:layout_height="35dp"
-            android:text='@{patientvm.observablePatient.birthDate}'
-            android:textAppearance="@android:style/TextAppearance.Material.Medium"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.354"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.393" />
-
-        <TextView
-            android:id="@+id/eircode"
-            android:layout_width="140dp"
-            android:layout_height="35dp"
-            android:text='@{patientvm.observablePatient.town + ", " + patientvm.observablePatient.county}'
-            android:textAppearance="@android:style/TextAppearance.Material.Medium"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.443" />
-
-        <TextView
-            android:id="@+id/birthDate"
-            android:layout_width="140dp"
-            android:layout_height="35dp"
-            android:text='@{patientvm.observablePatient.town}'
-            android:textAppearance="@android:style/TextAppearance.Material.Medium"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.354"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.343" />
-
-        <TextView
-            android:id="@+id/addressTag"
-            android:layout_width="120dp"
-            android:layout_height="35dp"
-            android:text="@string/addressTag"
-            android:textAppearance="@android:style/TextAppearance.Material.Medium"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.054"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.443" />
-
-        <TextView
-            android:id="@+id/ageTag"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:text="@string/ageTag"
-            android:textAppearance="@android:style/TextAppearance.Material.Medium"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.048"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.393" />
-
-        <TextView
-            android:id="@+id/firstName"
+            android:id="@+id/eirtext"
             android:layout_width="240dp"
             android:layout_height="35dp"
-            android:text='@{patientvm.observablePatient.firstName + " " + patientvm.observablePatient.lastName}'
+            android:text='@{patientvm.observablePatient.eircode}'
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/nameTag"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.293" />
-
-        <TextView
-            android:id="@+id/nameTag"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="204dp"
-            android:text="@string/nameTag"
-            android:textAppearance="@android:style/TextAppearance.Material.Medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.048"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/birthTag"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:text="@string/birthTag"
-            android:textAppearance="@android:style/TextAppearance.Material.Medium"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.048"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.343" />
-
-        <TextView
-            android:id="@+id/communihealthSubtitle"
-            android:layout_width="170dp"
-            android:layout_height="35dp"
-            android:layout_alignEnd="@+id/profileScreen"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/communihealthSubtitle"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.117" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="170dp"
-            android:layout_height="35dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="4dp"
-            android:text="@{patientvm.observablePatient.category}"
-            android:textSize="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.07"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/communihealthSubtitle"
+            app:layout_constraintStart_toEndOf="@+id/eircode"
+            app:layout_constraintTop_toBottomOf="@+id/county"
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
@@ -181,15 +56,226 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.044" />
 
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/map"
-            android:layout_width="407dp"
-            android:layout_height="239dp"
+        <TextView
+            android:id="@+id/communihealthSubtitle"
+            android:layout_width="170dp"
+            android:layout_height="35dp"
+            android:layout_alignEnd="@+id/profileScreen"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/communihealthSubtitle"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.04"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.117" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="170dp"
+            android:layout_height="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="4dp"
+            android:text="@{patientvm.observablePatient.category}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.07"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/communihealthSubtitle"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <TextView
+            android:id="@+id/nameTag"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="42dp"
+            android:text="@string/nameTag"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.048"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+        <TextView
+            android:id="@+id/houseNumberTag"
+            android:layout_width="130dp"
+            android:layout_height="35dp"
+            android:text="@string/houseNumber"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.06"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.415" />
+
+        <TextView
+            android:id="@+id/roadTag"
+            android:layout_width="130dp"
+            android:layout_height="35dp"
+            android:text="@string/roadTag"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.06"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.465" />
+
+        <TextView
+            android:id="@+id/townTag"
+            android:layout_width="130dp"
+            android:layout_height="35dp"
+            android:text="@string/townTag"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.06"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.515" />
+
+        <TextView
+            android:id="@+id/countyTag"
+            android:layout_width="130dp"
+            android:layout_height="35dp"
+            android:text="@string/countyTag"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.06"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.564" />
+
+        <TextView
+            android:id="@+id/eircode"
+            android:layout_width="130dp"
+            android:layout_height="35dp"
+            android:text="@string/eircode"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.06"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/countyTag"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/firstName"
+            android:layout_width="240dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="42dp"
+            android:text='@{patientvm.observablePatient.firstName + " " + patientvm.observablePatient.lastName}'
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/nameTag"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <TextView
+            android:id="@+id/birthDate"
+            android:layout_width="340dp"
+            android:layout_height="35dp"
+            android:text='@{"Birthday: " + patientvm.observablePatient.birthDate + "        Age: " + patientvm.observablePatient.age + " years"}'
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.225"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.343" />
+
+        <TextView
+            android:id="@+id/houseNumber"
+            android:layout_width="140dp"
+            android:layout_height="35dp"
+            android:text='@{patientvm.observablePatient.houseNumber}'
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/houseNumberTag"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.415" />
+
+        <TextView
+            android:id="@+id/road"
+            android:layout_width="240dp"
+            android:layout_height="35dp"
+            android:text='@{patientvm.observablePatient.road}'
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/roadTag"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.465" />
+
+        <TextView
+            android:id="@+id/town"
+            android:layout_width="240dp"
+            android:layout_height="35dp"
+            android:text='@{patientvm.observablePatient.town}'
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/townTag"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.514" />
+
+        <TextView
+            android:id="@+id/county"
+            android:layout_width="240dp"
+            android:layout_height="35dp"
+            android:text='@{patientvm.observablePatient.county}'
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/countyTag"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.564" />
+
+        <TextView
+            android:id="@+id/goTo"
+            android:layout_width="175dp"
+            android:layout_height="29dp"
+            android:text="@string/goTo"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.161"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/countyTag"
+            app:layout_constraintVertical_bias="0.806" />
+
+        <ImageView
+            android:id="@+id/navigationIcon"
+            android:layout_width="117dp"
+            android:layout_height="105dp"
+            android:layout_marginStart="60dp"
+            android:clickable="true"
+            android:contentDescription="@string/goTo"
+            android:focusable="true"
+            android:padding="8dp"
+            android:src="@drawable/nav"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eircode"
+            app:layout_constraintVertical_bias="0.447" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -82,6 +82,11 @@
             android:id="@+id/action_profileFragment_to_patientListFragment"
             app:destination="@id/patientListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.mobile.communihealthv2.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" />
 
 
 </navigation>

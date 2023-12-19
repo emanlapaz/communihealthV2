@@ -56,10 +56,10 @@
         android:text="@string/searchEircodeButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintHorizontal_bias="0.033"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eircode"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintVertical_bias="0.064" />
 
     <Button
         android:id="@+id/savePatientButton"
@@ -68,16 +68,14 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/savePatientButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.398"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.987" />
+        app:layout_constraintVertical_bias="0.91" />
 
     <RadioGroup
         android:id="@+id/category"
@@ -124,8 +122,8 @@
 
     <ImageView
         android:id="@+id/patientImageView"
-        android:layout_width="153dp"
-        android:layout_height="179dp"
+        android:layout_width="150dp"
+        android:layout_height="180dp"
         android:scaleType="centerCrop"
         android:src="@drawable/profile"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -133,77 +131,80 @@
         app:layout_constraintHorizontal_bias="0.937"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintVertical_bias="0.101" />
 
     <Button
         android:id="@+id/uploadImageButton"
-        android:layout_width="172dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="18dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
         android:text="@string/patientImgButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintHorizontal_bias="0.938"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eircode"
+        app:layout_constraintTop_toBottomOf="@+id/patientImageView"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/uploadLocationButton"
         android:layout_width="175dp"
         android:layout_height="58dp"
-        android:layout_marginTop="31dp"
         android:text="@string/uploadLocation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.923"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uploadImageButton"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/eircode"
+        app:layout_constraintVertical_bias="0.062" />
 
     <EditText
         android:id="@+id/firstName"
-        android:layout_width="211dp"
-        android:layout_height="44dp"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
         android:layout_marginTop="56dp"
         android:hint="@string/firstName"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/lastName"
-        android:layout_width="211dp"
-        android:layout_height="46dp"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
         android:hint="@string/lastName"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstName" />
 
     <EditText
         android:id="@+id/birthDate"
-        android:layout_width="211dp"
-        android:layout_height="42dp"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
         android:hint="@string/birthdate"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lastName" />
 
+
+
     <EditText
         android:id="@+id/eircode"
-        android:layout_width="211dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="184dp"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="7dp"
         android:hint="@string/eircode"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/birthDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
