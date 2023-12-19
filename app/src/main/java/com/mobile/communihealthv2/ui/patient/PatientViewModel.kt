@@ -14,6 +14,12 @@ class PatientViewModel : ViewModel() {
     val selectedImageUri: LiveData<Uri> = _selectedImageUri
     private val status = MutableLiveData<Boolean>()
 
+    val patientRoad: MutableLiveData<String> = MutableLiveData()
+    val patientHouseNumber: MutableLiveData<String> = MutableLiveData()
+    val patientTown: MutableLiveData<String> = MutableLiveData()
+    val patientCounty: MutableLiveData<String> = MutableLiveData()
+
+
     val observableStatus: LiveData<Boolean>
         get() = status
 
@@ -30,5 +36,4 @@ class PatientViewModel : ViewModel() {
         _selectedImageUri.value = uri
         // Additional processing if needed
     }
-
 }

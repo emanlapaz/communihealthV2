@@ -31,45 +31,49 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@mipmap/ic_launcher_round" />
 
+
             <TextView
                 android:id="@+id/firstName"
-                android:layout_width="79dp"
-                android:layout_height="26dp"
-                android:text="@{patient.firstName}"
+                android:layout_width="200dp"
+                android:layout_height="35dp"
+                android:text='@{patient.firstName + " " + patient.lastName}'
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.453"
+                app:layout_constraintHorizontal_bias="0.659"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/lastName"
-                android:layout_width="114dp"
-                android:layout_height="26dp"
-                android:text="@{patient.lastName}"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:id="@+id/category"
+                android:layout_width="200dp"
+                android:layout_height="35dp"
+                android:layout_alignParentTop="true"
+                android:text="@{patient.category}"
+                android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/firstName"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintHorizontal_bias="0.659"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.506" />
 
             <TextView
-            android:id="@+id/category"
-            android:layout_width="238dp"
-            android:layout_height="30dp"
-            android:layout_alignParentTop="true"
-            android:text="@{patient.category}"
-            android:textSize="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.965"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.063" />
+                android:id="@+id/address"
+                android:layout_width="200dp"
+                android:layout_height="35dp"
+                android:layout_alignParentTop="true"
+                android:text='@{patient.town + ", " + patient.county}'
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.659"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.986" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

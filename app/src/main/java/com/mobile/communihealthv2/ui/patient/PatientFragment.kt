@@ -34,8 +34,10 @@ import com.mobile.communihealthv2.models.PatientModel
 import com.mobile.communihealthv2.ui.auth.LoggedInViewModel
 import com.mobile.communihealthv2.ui.map.MapsViewModel
 import com.mobile.communihealthv2.ui.patientlist.PatientListViewModel
+import com.mobile.communihealthv2.utils.getLatLngFromEircode
 import timber.log.Timber
 import java.io.IOException
+import java.util.Locale
 
 class PatientFragment : Fragment() {
 
@@ -110,18 +112,55 @@ class PatientFragment : Fragment() {
         mapsViewModel.currentLocation.value?.let { location ->
             patientLatitude = location.latitude
             patientLongitude = location.longitude
-            Toast.makeText(context, "Patient Address set Current Location", Toast.LENGTH_SHORT).show()
+
+            val geocoder = Geocoder(requireContext(), Locale.getDefault())
+            try {
+                val addresses = geocoder.getFromLocation(patientLatitude, patientLongitude, 1)
+                if (addresses != null) {
+                    if (addresses.isNotEmpty()) {
+                        val address = addresses[0]
+
+                        patientViewModel.patientHouseNumber.value = address.subThoroughfare
+                        patientViewModel.patientRoad.value = address.thoroughfare
+                        patientViewModel.patientTown.value = address.locality
+                        patientViewModel.patientCounty.value = address.adminArea
+
+                        Toast.makeText(context, "Patient Address set to Current Location", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } catch (e: IOException) {
+                Toast.makeText(context, "Unable to get address from location", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
+//  TO DO!! ADD SNCKBARS, REGEX FIX ADDRESSES
     private fun searchEircode() {
         val eircode = fragBinding.eircode.text.toString()
-        val latLng = getLatLngFromEircode(eircode, requireContext())
-        latLng?.let {
-            patientLatitude = it.latitude
-            patientLongitude = it.longitude
-            Toast.makeText(context, "Location set from Eircode: ${eircode}", Toast.LENGTH_SHORT).show()
-        } ?: Toast.makeText(context, "Eircode Search Failed", Toast.LENGTH_SHORT).show()
+        val geocoder = Geocoder(requireContext(), Locale.getDefault())
+
+        try {
+            val addresses = geocoder.getFromLocationName(eircode, 1)
+            if (addresses != null) {
+                if (addresses.isNotEmpty()) {
+                    val address = addresses[0]
+                    patientLatitude = address.latitude
+                    patientLongitude = address.longitude
+
+                    // Update ViewModel with address details
+                    patientViewModel.patientHouseNumber.value = address.subThoroughfare
+                    patientViewModel.patientRoad.value = address.thoroughfare
+                    patientViewModel.patientTown.value = address.locality
+                    patientViewModel.patientCounty.value = address.adminArea
+
+                    Toast.makeText(context, "Location set from Eircode: $eircode, ${address.adminArea} ", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, "Eircode Search Failed", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } catch (e: IOException) {
+            Toast.makeText(context, "Error fetching address from Eircode", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun render(status: Boolean) {
@@ -146,6 +185,10 @@ class PatientFragment : Fragment() {
                 val eircode = layout.eircode.text.toString()
                 val selectedRadioButton = layout.root.findViewById<RadioButton>(selectedRadioButtonId)
                 val category = selectedRadioButton?.text.toString()
+                val town = patientViewModel.patientTown.value ?: ""
+                val county = patientViewModel.patientCounty.value ?: ""
+                val road = patientViewModel.patientRoad.value ?: ""
+                val houseNumber = patientViewModel.patientHouseNumber.value ?: ""
                 Timber.i("PatientFragment: New Patient Data: $firstName, $lastName, $birthDate, $eircode, $category")
 
                 // Upload the image to Firebase Storage
@@ -165,7 +208,11 @@ class PatientFragment : Fragment() {
                                 email = loggedInViewModel.liveFirebaseUser.value?.email!!,
                                 patientImage = imageUrl,
                                 latitude = patientLatitude,
-                                longitude = patientLongitude
+                                longitude = patientLongitude,
+                                road = road,
+                                town = town,
+                                county = county,
+                                houseNumber = houseNumber
                             )
                         )
                         findNavController().navigate(R.id.action_patientFragment_to_patientListFragment)
@@ -192,22 +239,6 @@ class PatientFragment : Fragment() {
                     requireView().findNavController())
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
-    }
-
-    fun getLatLngFromEircode(eircode: String, context: Context): LatLng? {
-        val geocoder = Geocoder(context)
-        try {
-            val addresses = geocoder.getFromLocationName(eircode, 1)
-            if (addresses != null) {
-                if (addresses.isNotEmpty()) {
-                    val location = addresses[0]
-                    return LatLng(location.latitude, location.longitude)
-                }
-            }
-        } catch (e: IOException) {
-            // Handle the exception
-        }
-        return null
     }
 
     override fun onDestroyView() {

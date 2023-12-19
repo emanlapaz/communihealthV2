@@ -97,9 +97,12 @@ class PatientListFragment : Fragment() , PatientClickListener {
 
         val swipeEditHandler = object : SwipeToEditCallback(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                onPatientClick(viewHolder.itemView.tag as PatientModel)
+                val patient = viewHolder.itemView.tag as PatientModel
+                val action = PatientListFragmentDirections.actionPatientListFragmentToPatientDetailFragment(patient.uid!!)
+                findNavController().navigate(action)
             }
         }
+
         val itemTouchEditHelper = ItemTouchHelper(swipeEditHandler)
         itemTouchEditHelper.attachToRecyclerView(fragBinding.recyclerView)
         return root
@@ -154,10 +157,10 @@ class PatientListFragment : Fragment() , PatientClickListener {
 
     override fun onPatientClick(patient: PatientModel) {
         val action =
-            PatientListFragmentDirections.actionPatientListFragmentToPatientDetailFragment(patient.uid!!)
-        if(!patientListViewModel.readOnly.value!!)
+            PatientListFragmentDirections.actionPatientListFragmentToProfileFragment(patient.uid!!)
         findNavController().navigate(action)
     }
+
 
     private fun setSwipeRefresh() {
         fragBinding.swiperefresh.setOnRefreshListener {

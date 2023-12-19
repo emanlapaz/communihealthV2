@@ -18,7 +18,11 @@ data class PatientModel (
                          var uid: String? ="",
                          var email: String? = "joe@bloggs.com",
                          var latitude: Double? = 0.0,
-                         var longitude: Double? = 0.0
+                         var longitude: Double? = 0.0,
+                         val houseNumber:String ="",
+                         val road:String ="",
+                         val town:String ="",
+                         val county:String ="",
                          ): Parcelable
 {
     @Exclude
@@ -33,7 +37,11 @@ data class PatientModel (
             "patientImage" to patientImage,
             "email" to email,
             "latitude" to latitude,
-            "longitude" to longitude
+            "longitude" to longitude,
+            "houseNumber" to houseNumber,
+            "road" to road,
+            "town" to town,
+            "county" to county,
         )
     }
 }
