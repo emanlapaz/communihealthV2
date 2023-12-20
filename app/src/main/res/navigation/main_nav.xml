@@ -91,11 +91,9 @@
         android:name="com.mobile.communihealthv2.ui.calendar.CalendarFragment"
         android:label="Calendar"
         tools:layout="@layout/fragment_calendar" >
-
         <argument
             android:name="patientid"
             app:argType="string" />
-
         <action
             android:id="@+id/action_calendarFragment_to_profileFragment"
             app:destination="@id/profileFragment" />

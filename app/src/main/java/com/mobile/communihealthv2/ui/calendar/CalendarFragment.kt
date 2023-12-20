@@ -2,13 +2,9 @@ package com.mobile.communihealthv2.ui.calendar
 
 import android.Manifest
 import android.app.TimePickerDialog
-import android.content.ContentResolver
-import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.icu.text.SimpleDateFormat
-import android.icu.util.TimeZone
 import android.os.Bundle
-import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,13 +14,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.storage.FirebaseStorage
 import com.mobile.communihealthv2.R
 import com.mobile.communihealthv2.databinding.FragmentCalendarBinding
 import com.mobile.communihealthv2.models.PatientModel
 import com.mobile.communihealthv2.ui.auth.LoggedInViewModel
-import com.mobile.communihealthv2.ui.patientlist.PatientListViewModel
 import com.squareup.picasso.Picasso
 import timber.log.Timber
 import java.util.Calendar
@@ -36,7 +32,7 @@ class CalendarFragment : Fragment() {
     private var _fragBinding: FragmentCalendarBinding? = null
     private val fragBinding get() = _fragBinding!!
     private val loggedInViewModel: LoggedInViewModel by activityViewModels()
-    private val patientListViewModel: PatientListViewModel by activityViewModels()
+    private val args: CalendarFragmentArgs by navArgs()
 
     private var startTimeInMillis: Long = 0
     private var endTimeInMillis: Long = 0
@@ -47,7 +43,6 @@ class CalendarFragment : Fragment() {
     )
 
     private val PERMISSION_REQUEST_CODE = 1001
-    private val args: CalendarFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +53,7 @@ class CalendarFragment : Fragment() {
 
         calendarViewModel = ViewModelProvider(this).get(CalendarViewModel::class.java)
 
-        calendarViewModel.getPatient(
+        calendarViewModel.getPatientData(
             loggedInViewModel.liveFirebaseUser.value?.uid!!,
             args.patientid
         )
@@ -74,7 +69,6 @@ class CalendarFragment : Fragment() {
             showTimePickerDialog(true)
         }
         fragBinding.selectEndTimeButton.setOnClickListener {
-
             Timber.d("selectEndTimeButton clicked")
             showTimePickerDialog(false)
         }
@@ -82,13 +76,18 @@ class CalendarFragment : Fragment() {
         fragBinding.saveAppButton.setOnClickListener {
             if (areCalendarPermissionsGranted()) {
                 Timber.d("Save Appointment Button clicked")
-                //saveApp() save date, day, start and end time
+                saveApp() // Call the function to upload the appointment details to Firebase
+
+                // Navigate to the profile fragment using the action defined in the navigation graph
+                val action = CalendarFragmentDirections.actionCalendarFragmentToProfileFragment(args.patientid)
+                findNavController().navigate(action)
             } else {
                 // Request calendar permissions
                 Timber.d("Requesting calendar permissions")
                 requestPermissions(calendarPermissions, PERMISSION_REQUEST_CODE)
             }
         }
+
         return root
     }
 
@@ -98,7 +97,7 @@ class CalendarFragment : Fragment() {
         // Find your CalendarView
         val calendarView = fragBinding.calendarView
 
-        calendarViewModel.getPatient(
+        calendarViewModel.getPatientData(
             loggedInViewModel.liveFirebaseUser.value?.uid!!,
             args.patientid
         )
@@ -135,11 +134,12 @@ class CalendarFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        calendarViewModel.getPatient(
+        calendarViewModel.getPatientData(
             loggedInViewModel.liveFirebaseUser.value?.uid!!,
             args.patientid
         )
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _fragBinding = null
@@ -149,10 +149,7 @@ class CalendarFragment : Fragment() {
         Timber.i("CalendarFragment: render called")
         // Use the patient data to update your UI elements
         if (patient != null) {
-            val firstNameTextView = fragBinding.firstName
-            // Set other TextViews similarly with the required patient data
-            firstNameTextView.text = patient.firstName
-
+            fragBinding.patientvm = calendarViewModel
             // Load and display patient image
             if (!patient.patientImage.isNullOrEmpty()) {
                 val storageReference =
@@ -167,20 +164,15 @@ class CalendarFragment : Fragment() {
                         .centerInside()
                         .into(fragBinding.patientImageView)
                 }.addOnFailureListener { exception ->
-                    // Handle failure to load image
+
                     Timber.e(exception, "Failed to load patient image from Firebase Storage")
                 }
             }
-
-            // Handle other UI elements and logic as needed
         } else {
-            // Handle the case where patient data is not available
-            // You can set default values or show an error message here
             Toast.makeText(requireContext(), "Patient data not available", Toast.LENGTH_SHORT).show()
         }
-
-        // Implement other UI updates or logic here
     }
+
     private fun showTimePickerDialog(isStartTime: Boolean) {
         val calendar = Calendar.getInstance()
         val hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
@@ -198,9 +190,13 @@ class CalendarFragment : Fragment() {
                 if (isStartTime) {
                     // Set the start time
                     startTimeInMillis = selectedTimeInMillis
+                    // Update the start time display immediately
+                    fragBinding.startTime.text = getTimeString(startTimeInMillis)
                 } else {
                     // Set the end time
                     endTimeInMillis = selectedTimeInMillis
+                    // Update the end time display immediately
+                    fragBinding.endTime.text = getTimeString(endTimeInMillis)
                 }
             },
             hourOfDay,
@@ -210,6 +206,7 @@ class CalendarFragment : Fragment() {
 
         timePickerDialog.show()
     }
+
 
     private fun areCalendarPermissionsGranted(): Boolean {
         for (permission in calendarPermissions) {
@@ -223,6 +220,7 @@ class CalendarFragment : Fragment() {
         }
         return true
     }
+
     private fun getTimeString(timeInMillis: Long): String {
         if (timeInMillis == 0L) {
             return ""
@@ -232,6 +230,38 @@ class CalendarFragment : Fragment() {
         val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
         return timeFormat.format(timeCalendar.time)
     }
+
+    private fun saveApp() {
+        // Check if start and end times are valid
+        if (startTimeInMillis == 0L || endTimeInMillis == 0L) {
+            Toast.makeText(requireContext(), "Please select valid start and end times", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Get patient data
+        val patient = calendarViewModel.observablePatient.value
+
+        // Check if patient data is available
+        if (patient != null) {
+            // Extract appointment details
+            val updatedPatient = patient.copy(
+                startTime = getTimeString(startTimeInMillis),
+                endTime = getTimeString(endTimeInMillis),
+                appDay = fragBinding.appDay.text.toString(),
+                appDate = fragBinding.appDate.text.toString()
+            )
+
+            // Update patient data in Firebase
+            calendarViewModel.updatePatientData(
+                loggedInViewModel.liveFirebaseUser.value?.uid ?: "",
+                updatedPatient.uid ?: "",
+                updatedPatient
+            )
+
+            Toast.makeText(requireContext(), "Appointment details saved to Firebase", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), "Patient data not available", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }
-
-

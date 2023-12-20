@@ -74,7 +74,8 @@
             android:layout_width="135dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
-
+            android:text="@string/date"
+            android:gravity="center"
             android:layout_marginBottom="12dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:layout_constraintBottom_toTopOf="@+id/calendarView"
@@ -82,7 +83,7 @@
             app:layout_constraintHorizontal_bias="0.449"
             app:layout_constraintStart_toEndOf="@+id/appDay"
             app:layout_constraintTop_toBottomOf="@+id/endTime"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/appString"
@@ -117,7 +118,7 @@
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="@string/start_time_view"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -130,7 +131,7 @@
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="49dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="@string/end_time_view"
             android:textAppearance="?android:attr/textAppearanceMedium"

@@ -23,8 +23,12 @@ data class PatientModel (
                          val road:String ="",
                          val town:String ="",
                          val county:String ="",
-                         val age: Int = 0
-                         ): Parcelable
+                         val age: Int = 0,
+                         var startTime: String = "",    // Add the start_time field
+                         var endTime: String = "",      // Add the end_time field
+                         var appDay: String = "",       // Add the appDay field
+                         var appDate: String = ""
+): Parcelable
 {
     @Exclude
     fun toMap(): Map<String, Any?> {
@@ -43,7 +47,11 @@ data class PatientModel (
             "road" to road,
             "town" to town,
             "county" to county,
-            "age" to age
+            "age" to age,
+            "startTime" to startTime,    // Include the new fields in the map
+            "endTime" to endTime,
+            "appDay" to appDay,
+            "appDate" to appDate
         )
     }
 }

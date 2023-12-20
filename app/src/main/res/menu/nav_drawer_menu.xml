@@ -20,7 +20,7 @@
         <item
             android:id="@+id/calendarFragment"
             android:icon="@drawable/appointments"
-            android:title="@string/calendar" />
+            android:title="@string/appointment_schedule" />
         <item
             android:id="@+id/aboutscreenFragment"
             android:icon="@drawable/ic_menu_aboutscreen"

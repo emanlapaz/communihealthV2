@@ -33,15 +33,17 @@
         <TextView
             android:id="@+id/appointment"
             android:layout_width="370dp"
-            android:layout_height="35dp"
-            android:text="12/12/1121 saturday 1230 to 1300"
+            android:layout_height="63dp"
+            android:maxLines="3"
+            android:text='@{patientvm.observablePatient.appDay + " " + patientvm.observablePatient.appDate + " " + patientvm.observablePatient.startTime + " " + patientvm.observablePatient.endTime}'
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.414"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/eirtext"
-            app:layout_constraintVertical_bias="0.133" />
+            app:layout_constraintVertical_bias="0.175" />
 
         <ImageView
             android:id="@+id/patientImageView"
@@ -79,14 +81,15 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/communihealthSubtitle"
+            android:text="@string/patient_category"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintHorizontal_bias="0.004"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.117" />
+            app:layout_constraintVertical_bias="0.123" />
+
 
         <TextView
             android:id="@+id/textView"
@@ -97,11 +100,10 @@
             android:text="@{patientvm.observablePatient.category}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.07"
+            app:layout_constraintHorizontal_bias="0.037"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/communihealthSubtitle"
             app:layout_constraintVertical_bias="0.0" />
-
 
         <TextView
             android:id="@+id/nameTag"
@@ -189,10 +191,10 @@
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.081"
+            app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/countyTag"
-            app:layout_constraintVertical_bias="0.128" />
+            app:layout_constraintVertical_bias="0.147" />
 
         <TextView
             android:id="@+id/firstName"
