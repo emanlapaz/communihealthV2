@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.storage.FirebaseStorage
 import com.mobile.communihealthv2.R
@@ -73,6 +74,14 @@ class ProfileFragment : Fragment() {
                 navigateToCoordinates(patient.latitude!!, patient.longitude!!)
             } else {
                 Toast.makeText(requireContext(), "Address data not available", Toast.LENGTH_SHORT).show()
+            }
+        }
+        fragBinding.calendarIcon.setOnClickListener {
+            patient?.let {
+                val action = ProfileFragmentDirections.actionProfileFragmentToCalendarFragment(args.patientid)
+                findNavController().navigate(action)
+            } ?: run {
+                Toast.makeText(context, "Patient ID not available", Toast.LENGTH_SHORT).show()
             }
         }
     }

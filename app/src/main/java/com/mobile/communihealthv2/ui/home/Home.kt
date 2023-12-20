@@ -67,9 +67,8 @@ class Home : AppCompatActivity() {
                     signOut()
                     true
                 }
-                R.id.calendarFragment -> {
-                    // Handle the click for the Calendar item
-                    findNavController(R.id.nav_host_fragment).navigate(R.id.calendarFragment)
+                R.id.patientListFragment -> {
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.patientListFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }

@@ -52,4 +52,14 @@ class CalendarViewModel : ViewModel() {
         Timber.e("Error adding event to calendar: ${e.message}")
         // Handle the exception
     }
+    fun getPatient(userid:String, id: String) {
+        try {
+            FirebaseDBManager.findById(userid, id, patient)
+            Timber.i("Detail getPatient() Success : ${
+                patient.value.toString()}")
+        }
+        catch (e: Exception) {
+            Timber.i("Detail getPatient() Error : $e.message")
+        }
+    }
 }

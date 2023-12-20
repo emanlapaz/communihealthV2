@@ -30,6 +30,19 @@
             app:layout_constraintTop_toBottomOf="@+id/county"
             app:layout_constraintVertical_bias="0.0" />
 
+        <TextView
+            android:id="@+id/appointment"
+            android:layout_width="370dp"
+            android:layout_height="35dp"
+            android:text="12/12/1121 saturday 1230 to 1300"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.414"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eirtext"
+            app:layout_constraintVertical_bias="0.133" />
+
         <ImageView
             android:id="@+id/patientImageView"
             android:layout_width="180dp"
@@ -169,6 +182,19 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
+            android:id="@+id/appSched"
+            android:layout_width="203dp"
+            android:layout_height="31dp"
+            android:text="@string/appointment_schedule"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.081"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/countyTag"
+            app:layout_constraintVertical_bias="0.128" />
+
+        <TextView
             android:id="@+id/firstName"
             android:layout_width="240dp"
             android:layout_height="35dp"
@@ -250,22 +276,37 @@
 
         <TextView
             android:id="@+id/goTo"
-            android:layout_width="175dp"
-            android:layout_height="29dp"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
             android:text="@string/goTo"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.161"
+            app:layout_constraintHorizontal_bias="0.141"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/countyTag"
-            app:layout_constraintVertical_bias="0.806" />
+            app:layout_constraintTop_toBottomOf="@+id/navigationIcon"
+            app:layout_constraintVertical_bias="0.466" />
+
+        <TextView
+            android:id="@+id/goToCalendar"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:text="@string/gotoCalendar"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.858"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eirtext"
+            app:layout_constraintVertical_bias="0.932" />
 
         <ImageView
             android:id="@+id/navigationIcon"
-            android:layout_width="117dp"
-            android:layout_height="105dp"
-            android:layout_marginStart="60dp"
+            android:layout_width="131dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="48dp"
             android:clickable="true"
             android:contentDescription="@string/goTo"
             android:focusable="true"
@@ -274,7 +315,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/eircode"
-            app:layout_constraintVertical_bias="0.447" />
+            app:layout_constraintVertical_bias="0.62" />
+
+        <ImageView
+            android:id="@+id/calendarIcon"
+            android:layout_width="127dp"
+            android:layout_height="111dp"
+            android:layout_marginStart="236dp"
+            android:clickable="true"
+            android:contentDescription="@string/gotoCalendar"
+            android:focusable="true"
+            android:padding="8dp"
+            android:src="@drawable/calendar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eircode"
+            app:layout_constraintVertical_bias="0.631" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
