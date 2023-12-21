@@ -10,5 +10,6 @@
         android:id="@+id/togglePatients"
         android:title=""
         app:actionLayout="@layout/togglebutton_layout"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        android:background="#F2F6F2"/>
 </menu>

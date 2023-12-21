@@ -87,7 +87,7 @@ class PatientFragment : Fragment() {
         })
 
         patientViewModel.selectedImageUri.observe(viewLifecycleOwner) { uri ->
-            fragBinding.patientImageView.setImageURI(uri)
+            fragBinding.uploadImageButton.setImageURI(uri)
         }
 
         fragBinding.uploadImageButton.setOnClickListener {
@@ -218,7 +218,7 @@ class PatientFragment : Fragment() {
                     return@setOnClickListener
                 }
                 // Upload the image to Firebase Storage
-                val imageBitmap = (fragBinding.patientImageView.drawable as BitmapDrawable).bitmap
+                val imageBitmap = (fragBinding.uploadImageButton.drawable as BitmapDrawable).bitmap
 
                 firebaseImageManager.uploadImageToFirebase(
                     loggedInViewModel.liveFirebaseUser.value?.uid ?: "",

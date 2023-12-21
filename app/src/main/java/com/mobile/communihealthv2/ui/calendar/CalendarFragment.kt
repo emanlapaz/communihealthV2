@@ -76,9 +76,8 @@ class CalendarFragment : Fragment() {
         fragBinding.saveAppButton.setOnClickListener {
             if (areCalendarPermissionsGranted()) {
                 Timber.d("Save Appointment Button clicked")
-                saveApp() // Call the function to upload the appointment details to Firebase
+                saveApp()
 
-                // Navigate to the profile fragment using the action defined in the navigation graph
                 val action = CalendarFragmentDirections.actionCalendarFragmentToProfileFragment(args.patientid)
                 findNavController().navigate(action)
             } else {
@@ -94,7 +93,6 @@ class CalendarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Find your CalendarView
         val calendarView = fragBinding.calendarView
 
         calendarViewModel.getPatientData(
@@ -102,20 +100,16 @@ class CalendarFragment : Fragment() {
             args.patientid
         )
 
-        // Set up the OnDateChangeListener
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            // The date is selected, you can do something with it
+
             val selectedDate = Calendar.getInstance()
             selectedDate.set(year, month, dayOfMonth)
 
-            // Get the day of the week
             val dayOfWeek = selectedDate.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault())
 
-            // Format the selected date in "dd/MM/yyyy" pattern
             val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val formattedDate = dateFormat.format(selectedDate.time)
 
-            // Get the start time and end time in HH:mm format
             val startTime = getTimeString(startTimeInMillis)
             val endTime = getTimeString(endTimeInMillis)
 
@@ -124,7 +118,6 @@ class CalendarFragment : Fragment() {
             fragBinding.startTime.text = startTime
             fragBinding.endTime.text = endTime
 
-            // Log the selected date, day of the week, start time, and end time for demonstration
             Timber.d("Selected Date: $formattedDate")
             Timber.d("Day of the Week: $dayOfWeek")
             Timber.d("Start Time: $startTime")
@@ -147,10 +140,10 @@ class CalendarFragment : Fragment() {
 
     private fun render(patient: PatientModel?) {
         Timber.i("CalendarFragment: render called")
-        // Use the patient data to update your UI elements
+
         if (patient != null) {
             fragBinding.patientvm = calendarViewModel
-            // Load and display patient image
+
             if (!patient.patientImage.isNullOrEmpty()) {
                 val storageReference =
                     FirebaseStorage.getInstance().getReferenceFromUrl(patient.patientImage)
@@ -158,8 +151,8 @@ class CalendarFragment : Fragment() {
                 storageReference.downloadUrl.addOnSuccessListener { imageUrl ->
                     Picasso.get()
                         .load(imageUrl)
-                        .placeholder(R.drawable.profile) // Placeholder image
-                        .error(R.drawable.profile) // Error image (optional)
+                        .placeholder(R.drawable.profile)
+                        .error(R.drawable.profile)
                         .fit()
                         .centerInside()
                         .into(fragBinding.patientImageView)
@@ -188,14 +181,14 @@ class CalendarFragment : Fragment() {
                 val selectedTimeInMillis = selectedCalendar.timeInMillis
 
                 if (isStartTime) {
-                    // Set the start time
+
                     startTimeInMillis = selectedTimeInMillis
-                    // Update the start time display immediately
+
                     fragBinding.startTime.text = getTimeString(startTimeInMillis)
                 } else {
-                    // Set the end time
+
                     endTimeInMillis = selectedTimeInMillis
-                    // Update the end time display immediately
+
                     fragBinding.endTime.text = getTimeString(endTimeInMillis)
                 }
             },
@@ -206,7 +199,6 @@ class CalendarFragment : Fragment() {
 
         timePickerDialog.show()
     }
-
 
     private fun areCalendarPermissionsGranted(): Boolean {
         for (permission in calendarPermissions) {
@@ -232,18 +224,16 @@ class CalendarFragment : Fragment() {
     }
 
     private fun saveApp() {
-        // Check if start and end times are valid
+
         if (startTimeInMillis == 0L || endTimeInMillis == 0L) {
             Toast.makeText(requireContext(), "Please select valid start and end times", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Get patient data
         val patient = calendarViewModel.observablePatient.value
 
-        // Check if patient data is available
         if (patient != null) {
-            // Extract appointment details
+
             val updatedPatient = patient.copy(
                 startTime = getTimeString(startTimeInMillis),
                 endTime = getTimeString(endTimeInMillis),
@@ -251,7 +241,6 @@ class CalendarFragment : Fragment() {
                 appDate = fragBinding.appDate.text.toString()
             )
 
-            // Update patient data in Firebase
             calendarViewModel.updatePatientData(
                 loggedInViewModel.liveFirebaseUser.value?.uid ?: "",
                 updatedPatient.uid ?: "",

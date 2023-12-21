@@ -34,15 +34,12 @@ class PatientDetailFragment : Fragment() {
         _fragBinding = FragmentPatientDetailBinding.inflate(inflater, container, false)
         val root = fragBinding.root
 
-        // Initialize ViewModel
         detailViewModel = ViewModelProvider(this).get(PatientDetailViewModel::class.java)
 
-        // Observe the LiveData
         detailViewModel.observablePatient.observe(viewLifecycleOwner, Observer {
             Timber.i("PatientDetailFragment: Observable patient changed")
             render() })
 
-        // Set up RadioGroup listener
         fragBinding.category.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.fullcare -> detailViewModel.observablePatient.value?.category = "Full Nursing Care"
@@ -84,7 +81,7 @@ class PatientDetailFragment : Fragment() {
                     .centerInside()
                     .into(fragBinding.patientImageView)
             }.addOnFailureListener { exception ->
-                // Handle failure to load image
+
                 Timber.e(exception, "Failed to load patient image from Firebase Storage")
             }
         }

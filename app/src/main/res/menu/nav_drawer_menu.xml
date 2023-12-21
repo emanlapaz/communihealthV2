@@ -18,7 +18,7 @@
             android:title="@string/action_patientLocation" />
 
         <item
-            android:id="@+id/calendarFragment"
+            android:id="@+id/appointmentList"
             android:icon="@drawable/appointments"
             android:title="@string/appointment_schedule" />
         <item

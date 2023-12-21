@@ -20,7 +20,9 @@
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:background="@color/card_color">
+            
 
             <ImageView
                 android:id="@+id/patientImageView"
@@ -51,7 +53,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentTop="true"
                 android:text="@{patient.category}"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.659"
@@ -65,7 +67,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentTop="true"
                 android:text='@{patient.county}'
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.659"

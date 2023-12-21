@@ -19,7 +19,6 @@ class PatientViewModel : ViewModel() {
     val patientTown: MutableLiveData<String> = MutableLiveData()
     val patientCounty: MutableLiveData<String> = MutableLiveData()
 
-
     val observableStatus: LiveData<Boolean>
         get() = status
 

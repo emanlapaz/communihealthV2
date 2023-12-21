@@ -109,7 +109,6 @@ class MapsFragment : Fragment() {
     private fun setupMenu() {
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
             override fun onPrepareMenu(menu: Menu) {
-                // Handle for example visibility of menu items
             }
 
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -127,7 +126,7 @@ class MapsFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                // Validate and handle the selected menu item
+
                 return NavigationUI.onNavDestinationSelected(menuItem,
                     requireView().findNavController())
             }     }, viewLifecycleOwner, Lifecycle.State.RESUMED)

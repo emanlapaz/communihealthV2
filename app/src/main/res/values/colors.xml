@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_primary">#0E76CC</color>
-    <color name="color_secondary">#2196F3</color>
+    <color name="color_primary">#60E966</color>
+    <color name="color_secondary">#7BAFD4</color>
+    <color name="colorAccent">#4CAF50</color>
+    <color name="colorBackground">#DDD698</color>
+    <color name="colorTextPrimary">#333333</color>
+    <color name="colorTextSecondary">#555555</color>
+    <color name="white">#FFFFFF</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-
-    <color name="colorAccent">#034F8F</color>
-    <color name="nurse">#FFFFFF</color>
-
-    <color name="colorWhite">#FFFFFF</color>
-    <color name="grey_100">#2196F3</color>
-    <color name="grey_300">#E0E0E0</color>
-    <color name="grey_500">#9E9E9E</color>
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_300">#DADADA</color>
+    <color name="grey_500">#B0B0B0</color>
+    <color name="colorHighlight">#FF4081</color>
+    <color name="colorSuccess">#4CAF50</color>
+    <color name="colorError">#F44336</color>
+    <color name="card_color">#EEF3B8</color>
 </resources>

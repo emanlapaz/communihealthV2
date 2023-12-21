@@ -3,7 +3,7 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_100"
+    android:background="@drawable/backdrop"
     android:orientation="vertical"
     android:weightSum="4">
 
@@ -20,22 +20,33 @@
             android:layout_width="286dp"
             android:layout_height="325dp"
             android:contentDescription="@string/desc_firebase_lockup"
-            android:src="@drawable/nurse" />
+            android:src="@drawable/communihealth_icon" />
 
         <TextView
             android:id="@+id/titleText"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="@dimen/title_bottom_margin"
+            android:text="@string/CommuniHealth"
+            android:textColor="@color/white"
+            android:textSize="38sp"
+            android:theme="@style/ThemeOverlay.MyTitleText" />
+
+        <TextView
+            android:id="@+id/version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/title_bottom_margin"
-            android:text="@string/emailpassword_title_text"
-            android:textColor="@color/colorWhite"
+            android:text="@string/version"
+            android:textSize="14sp"
+            android:textColor="@color/white"
             android:theme="@style/ThemeOverlay.MyTitleText" />
 
         <TextView
             android:id="@+id/status"
             style="@style/ThemeOverlay.MyTextDetail"
             android:text="@string/signed_out"
-            android:textColor="@color/colorWhite" />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/detail"
@@ -49,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/colorWhite"
+        android:background="@color/white"
         android:gravity="center_vertical">
 
         <LinearLayout
@@ -115,15 +126,15 @@
 
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/googleSignInButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="339dp"
+                android:layout_height="45dp"
                 android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/signedInButtons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
             android:layout_centerInParent="true"
             android:orientation="horizontal"
             android:paddingLeft="16dp"
@@ -143,8 +154,8 @@
             <Button
                 android:id="@+id/verifyEmailButton"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1.0"
                 android:text="@string/verify_email"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />

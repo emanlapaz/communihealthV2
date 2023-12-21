@@ -24,9 +24,9 @@ data class PatientModel (
                          val town:String ="",
                          val county:String ="",
                          val age: Int = 0,
-                         var startTime: String = "",    // Add the start_time field
-                         var endTime: String = "",      // Add the end_time field
-                         var appDay: String = "",       // Add the appDay field
+                         var startTime: String = "",
+                         var endTime: String = "",
+                         var appDay: String = "",
                          var appDate: String = ""
 ): Parcelable
 {
@@ -48,7 +48,7 @@ data class PatientModel (
             "town" to town,
             "county" to county,
             "age" to age,
-            "startTime" to startTime,    // Include the new fields in the map
+            "startTime" to startTime,
             "endTime" to endTime,
             "appDay" to appDay,
             "appDate" to appDate

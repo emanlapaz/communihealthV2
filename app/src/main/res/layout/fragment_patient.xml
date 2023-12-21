@@ -5,8 +5,8 @@
     android:id="@+id/patientFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backdrop"
     tools:context=".ui.patient.PatientFragment">
-
 
     <TextView
         android:id="@+id/communihealthSubtitle"
@@ -21,10 +21,25 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uploadLocationButton"
-        app:layout_constraintVertical_bias="0.037" />
+        app:layout_constraintVertical_bias="0.043" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:text="Click image to add photo"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/uploadLocationButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toEndOf="@+id/eircode"
+        app:layout_constraintTop_toBottomOf="@+id/uploadImageButton"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/patientDetails"
@@ -72,10 +87,11 @@
         android:text="@string/savePatientButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.398"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.91" />
+        app:layout_constraintTop_toBottomOf="@+id/category"
+        app:layout_constraintVertical_bias="0.649" />
+
 
     <RadioGroup
         android:id="@+id/category"
@@ -86,10 +102,10 @@
         android:layout_marginTop="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.676"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uploadLocationButton"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.007">
 
         <RadioButton
             android:id="@+id/fullcare"
@@ -118,32 +134,8 @@
             android:layout_height="wrap_content"
             android:checked="false"
             android:text="@string/homehelp" />
+
     </RadioGroup>
-
-    <ImageView
-        android:id="@+id/patientImageView"
-        android:layout_width="150dp"
-        android:layout_height="180dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/profile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.937"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.101" />
-
-    <Button
-        android:id="@+id/uploadImageButton"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:text="@string/patientImgButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/patientImageView"
-        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/uploadLocationButton"
@@ -194,7 +186,6 @@
         app:layout_constraintTop_toBottomOf="@+id/lastName" />
 
 
-
     <EditText
         android:id="@+id/eircode"
         android:layout_width="220dp"
@@ -206,5 +197,21 @@
         app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/birthDate" />
+
+    <ImageView
+        android:id="@+id/uploadImageButton"
+        android:layout_width="148dp"
+        android:layout_height="164dp"
+        android:clickable="true"
+        android:contentDescription="@string/goTo"
+        android:focusable="true"
+        android:padding="8dp"
+        android:src="@drawable/add_patient"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.939"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.098" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

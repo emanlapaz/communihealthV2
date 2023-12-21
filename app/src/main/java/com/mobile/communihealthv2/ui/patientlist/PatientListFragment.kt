@@ -24,6 +24,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mobile.communihealthv2.R
 import com.mobile.communihealthv2.adapters.PatientAdapter
@@ -161,7 +162,6 @@ class PatientListFragment : Fragment() , PatientClickListener {
         findNavController().navigate(action)
     }
 
-
     private fun setSwipeRefresh() {
         fragBinding.swiperefresh.setOnRefreshListener {
             fragBinding.swiperefresh.isRefreshing = true
@@ -173,12 +173,10 @@ class PatientListFragment : Fragment() , PatientClickListener {
                 patientListViewModel.load()
         }
     }
-
     private fun checkSwipeRefresh() {
         if (fragBinding.swiperefresh.isRefreshing)
             fragBinding.swiperefresh.isRefreshing = false
     }
-
     override fun onResume() {
         super.onResume()
         showLoader(loader, "Downloading Patients")
@@ -189,9 +187,9 @@ class PatientListFragment : Fragment() , PatientClickListener {
             }
         })
     }
-        override fun onDestroyView() {
-            super.onDestroyView()
-            Timber.i("PatientListFragment: onDestroyView")
-            _fragBinding = null
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Timber.i("PatientListFragment: onDestroyView")
+        _fragBinding = null
     }
+}

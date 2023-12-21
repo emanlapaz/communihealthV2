@@ -6,9 +6,11 @@
         android:orderInCategory="100"
         android:title="@string/action_addpatient"
         app:showAsAction="never" />
+
     <item
         android:id="@+id/togglePatients"
         android:title=""
         app:actionLayout="@layout/togglebutton_layout"
         app:showAsAction="always" />
+
 </menu>

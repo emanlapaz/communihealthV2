@@ -29,7 +29,6 @@ class ProfileFragment : Fragment() {
     private val fragBinding get() = _fragBinding!!
     private val loggedInViewModel: LoggedInViewModel by activityViewModels()
     private val profileViewModel: ProfileViewModel by activityViewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +45,6 @@ class ProfileFragment : Fragment() {
         })
         return root
     }
-
     private fun render(patient: PatientModel?) {
         Timber.i("ProfileFragment: render called")
         fragBinding.patientvm = detailViewModel
@@ -57,8 +55,8 @@ class ProfileFragment : Fragment() {
             storageReference.downloadUrl.addOnSuccessListener { imageUrl ->
                 Picasso.get()
                     .load(imageUrl)
-                    .placeholder(R.drawable.profile) // Placeholder image
-                    .error(R.drawable.profile) // Error image (optional)
+                    .placeholder(R.drawable.profile)
+                    .error(R.drawable.profile)
                     .fit()
                     .centerInside()
                     .into(fragBinding.patientImageView)

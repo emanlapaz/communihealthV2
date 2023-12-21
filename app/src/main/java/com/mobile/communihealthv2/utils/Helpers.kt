@@ -25,7 +25,6 @@ fun createLoader(activity: FragmentActivity) : AlertDialog {
 
     return loader
 }
-
 fun showLoader(loader: AlertDialog, message: String) {
     if (!loader.isShowing) {
         loader.setTitle(message)
@@ -37,23 +36,6 @@ fun hideLoader(loader: AlertDialog) {
     if (loader.isShowing)
         loader.dismiss()
 }
-
-fun serviceUnavailableMessage(activity: FragmentActivity) {
-    Toast.makeText(
-        activity,
-        "Service Unavailable. Try again later",
-        Toast.LENGTH_LONG
-    ).show()
-}
-
-fun serviceAvailableMessage(activity: FragmentActivity) {
-    Toast.makeText(
-        activity,
-        "Service Contacted Successfully",
-        Toast.LENGTH_LONG
-    ).show()
-}
-
 fun customTransformation() : Transformation =
     RoundedTransformationBuilder()
         .borderColor(Color.WHITE)

@@ -36,20 +36,20 @@ class PatientListViewModel : ViewModel() {
     fun delete(userid: String, id: String) {
         try {
             FirebaseDBManager.delete(userid,id)
-            Timber.i("Report Delete Success")
+            Timber.i("Delete Success")
         }
         catch (e: Exception) {
-            Timber.i("Report Delete Error : $e.message")
+            Timber.i("Delete Error : $e.message")
         }
     }
     fun loadAll() {
         try {
             readOnly.value = true
             FirebaseDBManager.findAll(patientsList)
-            Timber.i("Report LoadAll Success : ${patientsList.value.toString()}")
+            Timber.i("LoadAll Success : ${patientsList.value.toString()}")
         }
         catch (e: Exception) {
-            Timber.i("Report LoadAll Error : $e.message")
+            Timber.i("LoadAll Error : $e.message")
         }
     }
 }

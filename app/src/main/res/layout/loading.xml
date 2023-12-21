@@ -16,5 +16,6 @@
         android:layout_weight="4"
         android:gravity="center"
         android:text="@string/messageLoading"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:background="#F2F6F2"/>
 </LinearLayout>

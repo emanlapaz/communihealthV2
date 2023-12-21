@@ -45,7 +45,7 @@ class Login : AppCompatActivity() {
 
     public override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
+
         loginRegisterViewModel = ViewModelProvider(this).get(LoginRegisterViewModel::class.java)
         loginRegisterViewModel.liveFirebaseUser.observe(this, Observer
         { firebaseUser -> if (firebaseUser != null)
@@ -69,14 +69,13 @@ class Login : AppCompatActivity() {
                     RESULT_OK -> {
                         val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                         try {
-                            // Google Sign In was successful, authenticate with Firebase
+
                             val account = task.getResult(ApiException::class.java)
                             loginRegisterViewModel.authWithGoogle(account!!)
                         } catch (e: ApiException) {
-                            // Google Sign In failed
+
                             Timber.i( "Google sign in failed $e")
-                            //Snackbar.make(loginBinding.loginLayout, "Authentication Failed.",
-                              //  Snackbar.LENGTH_SHORT).show()
+
                         }
                         Timber.i("Communihealthv2 Google Result $result.data")
                     }
@@ -87,7 +86,6 @@ class Login : AppCompatActivity() {
             }
     }
 
-    //Required to exit app from Login Screen - must investigate this further
     override fun onBackPressed() {
         super.onBackPressed()
         Toast.makeText(this,"Click again to Close App...",Toast.LENGTH_LONG).show()

@@ -15,7 +15,8 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.profile.ProfileFragment">
+        tools:context=".ui.profile.ProfileFragment"
+        android:background="@drawable/backdrop">
 
         <TextView
             android:id="@+id/eirtext"
@@ -187,7 +188,7 @@
             android:id="@+id/appSched"
             android:layout_width="203dp"
             android:layout_height="31dp"
-            android:text="@string/appointment_schedule"
+            android:text="@string/appointment_date"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

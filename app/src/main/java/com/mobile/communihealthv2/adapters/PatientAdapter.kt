@@ -2,6 +2,8 @@ package com.mobile.communihealthv2.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.communihealthv2.R

@@ -60,7 +60,7 @@ class Home : AppCompatActivity() {
         if(checkLocationPermissions(this)) {
             mapsViewModel.updateCurrentLocation()
         }
-        // Modified: Set up Navigation for items that require navigation and manually handle sign-out
+
         homeBinding.navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_sign_out -> {
@@ -110,20 +110,17 @@ class Home : AppCompatActivity() {
     }
 
     private fun signOut() {
-        // Firebase instance
+
         val firebaseAuth = FirebaseAuth.getInstance()
 
-        // Sign out from Firebase
         firebaseAuth.signOut()
 
-        // Navigate to Login screen
         val intent = Intent(this, Login::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
         finish()
 
-        // A little toast to bid farewell
-        Toast.makeText(this, "You've been signed out. See you again!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "You've been signed out.", Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("MissingPermission")
