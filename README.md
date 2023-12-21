@@ -30,7 +30,10 @@ The user can also upload an image that will be used as the patient's profile pho
 
 The USE EIRCODE registers the EIRCODE as the patients address and will mark it on the map screen for navigation using the Google Maps. <br>
 
-<img src="https://github.com/emanlapaz/communihealthV2/blob/master/app/src/main/res/drawable/7_navigate.png" alt="Alt text" width="200"/><br>
+<img src="https://github.com/emanlapaz/communihealthV2/blob/master/app/src/main/res/drawable/7_navigate.png" alt="Alt text" width="200"/>
+<img src="https://github.com/emanlapaz/communihealthV2/assets/96552779/1d6bdf85-0370-48b1-9fdc-24261b369e3f" alt="Alt text" width="200"/><br>
+
+
 
 
 
