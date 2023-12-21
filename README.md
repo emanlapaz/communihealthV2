@@ -3,7 +3,8 @@ COMMUNIHEALTHV2.0
 
 Youtube Link: https://youtu.be/jidXN5bsynM
 
-![Alt text](https://github.com/emanlapaz/communihealthV2/assets/96552779/4683f2f4-6774-4393-9621-7f6d4c5adf94)
+<img src="https://github.com/emanlapaz/communihealthV2/assets/96552779/4683f2f4-6774-4393-9621-7f6d4c5adf94" alt="Alt text" width="200"/>
+
 
 Intro:
 <br>
