@@ -29,10 +29,11 @@ The user can also upload an image that will be used as the patient's profile pho
 <img src="https://github.com/emanlapaz/communihealthV2/assets/96552779/709129a6-b455-4d55-873e-b1e1e8cb38dc" alt="Alt text" width="200"/><br>
 
 The USE EIRCODE registers the EIRCODE as the patients address and will mark it on the map screen for navigation using the Google Maps. <br>
-<img src="https://github.com/emanlapaz/communihealthV2/assets/96552779/1d6bdf85-0370-48b1-9fdc-24261b369e3f" alt="Alt text" width="200"/>
+<img src="https://github.com/emanlapaz/communihealthV2/assets/96552779/1d6bdf85-0370-48b1-9fdc-24261b369e3f" alt="Alt text" width="200"/><br>
 <img src="https://github.com/emanlapaz/communihealthV2/blob/master/app/src/main/res/drawable/7_navigate.png" alt="Alt text" width="200"/><br>
 
-The Patient List screen display the patients that the user added. You can also toggle to display all the patients added by all users. The same applies to the Patient Location screen which displays the marker for all patients.
+The Patient List screen display the patients that the user added. You can also toggle to display all the patients added by all users. The same applies to the Patient Location screen which displays the marker for all patients.<br>
+Swiping left will give you the option to DELETE the patient while swiping right will EDIT the patient data.
 <img src="https://github.com/emanlapaz/communihealthV2/assets/96552779/0bb35fbf-783c-403f-a5bb-87272eea9c3d" alt="Alt text" width="200"/><br>
 
 Clicking the patient on the patient list will open up the profile page which displays all the relevant data. There are also 2 buttons NAVIGATE and SCHEDULE. <br>
@@ -42,6 +43,43 @@ SCHEDULE will redirect the user to a calendar screen where the user can set up t
 <img src="https://github.com/emanlapaz/communihealthV2/assets/96552779/73ecd4fa-fe54-4a88-bb9d-46915572c2f2" alt="Alt text" width="200"/>
 <img src="https://github.com/emanlapaz/communihealthV2/assets/96552779/21762fcf-08b8-4b13-9efe-bb3fcb3891f5" alt="Alt text" width="200"/>
 <br>
+
+There is also a nav drawer for ease of access to the other screens.<br>
+
+<img src="https://github.com/emanlapaz/communihealthV2/assets/96552779/2c49f8f9-7eb6-4fc5-ab0b-f0dfb196bd7c" alt="Alt text" width="200"/><br>
+
+About screen<br>
+
+
+<img src="https://github.com/emanlapaz/communihealthV2/assets/96552779/e013a15f-2b4a-4036-956f-e3e629933226" alt="Alt text" width="200"/><br>
+<br>
+
+Future Development:
+Communihealth can be developed in the future and be modified to add various functions like: <br>
+- Appointment List<br>
+- Communication EMAIL/SHARE<br>
+- Patient Notes<br>
+- Filtering<br>
+- Name Search<br>
+<br>
+
+References: <br>
+SETU Lecture Materials(2023)<br>
+
+Android Developers (2023), Navigation Component, Available at: https://developer.android.com/guide/navigation (Accessed: 12 December 2023). <br>
+
+Android Developers (2023), LiveData Overview, Available at: https://developer.android.com/topic/libraries/architecture/livedata (Accessed: 12 December 2023). <br>
+
+Android Developers (2023), ViewModel Overview, Available at: https://developer.android.com/topic/libraries/architecture/viewmodel (Accessed: 12 December 2023). <br>
+
+Firebase (2023), Firebase Realtime Database, Available at: https://firebase.google.com/docs/database (Accessed: 12 December 2023). <br>
+
+Picasso (2023), Picasso Image Library, Available at: http://square.github.io/picasso/ (Accessed: 12 December 2023). <br>
+
+Timber (2023), Timber Logging Utility, Available at: https://github.com/JakeWharton/timber (Accessed: 12 December 2023). <br>
+
+
+
 
 
 
