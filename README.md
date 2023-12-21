@@ -33,7 +33,7 @@ The USE EIRCODE registers the EIRCODE as the patients address and will mark it o
 <img src="https://github.com/emanlapaz/communihealthV2/blob/master/app/src/main/res/drawable/7_navigate.png" alt="Alt text" width="200"/><br>
 
 The Patient List screen display the patients that the user added. You can also toggle to display all the patients added by all users. The same applies to the Patient Location screen which displays the marker for all patients.<br>
-Swiping left will give you the option to DELETE the patient while swiping right will EDIT the patient data.
+Swiping left will give you the option to DELETE the patient while swiping right will EDIT the patient data. <br>
 <img src="https://github.com/emanlapaz/communihealthV2/assets/96552779/0bb35fbf-783c-403f-a5bb-87272eea9c3d" alt="Alt text" width="200"/><br>
 
 Clicking the patient on the patient list will open up the profile page which displays all the relevant data. There are also 2 buttons NAVIGATE and SCHEDULE. <br>
