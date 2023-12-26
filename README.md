@@ -1,7 +1,8 @@
 # communihealthV2
 COMMUNIHEALTHV2.0
 
-Youtube Link: https://youtu.be/jidXN5bsynM
+Youtube Link: https://youtu.be/jidXN5bsynM <br>
+GitHub Link: https://github.com/emanlapaz/communihealthV2 <br>
 
 <img src="https://github.com/emanlapaz/communihealthV2/assets/96552779/4683f2f4-6774-4393-9621-7f6d4c5adf94" alt="Alt text" width="200"/>
 
@@ -98,7 +99,7 @@ Communihealth can be developed in the future and be modified to add various func
 
 Personal Statement:
 
-This android project and the Mobile App module itself is very challenging
+This android project and the Mobile App module itself is very challenging. I had my fair share of bugs crashes and everything in between. I was able to make this app work and added the functionalities that I though would be relevant to the project. The project has a lot of room for improvements and I will continue to update this in due course. I know I have just scratched the surface in mobile app development and it has been fun and fulfilling seeing this work.  
 
 
 References: <br>
