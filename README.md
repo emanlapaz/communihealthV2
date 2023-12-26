@@ -22,6 +22,7 @@ The add patient screen will require the user to input the patient details as bel
 - First and Last Names<br>
 - Date of Birth in this format dd/yy/mmmm <br>
 - Eircode <br>
+- If Eircode not available, the user can user the current location and mark it as patient address
 - Services Required <br>
 
 The user can also upload an image that will be used as the patient's profile photo. <br>
@@ -31,6 +32,10 @@ The user can also upload an image that will be used as the patient's profile pho
 The USE EIRCODE registers the EIRCODE as the patients address and will mark it on the map screen for navigation using the Google Maps. <br>
 <img src="https://github.com/emanlapaz/communihealthV2/assets/96552779/1d6bdf85-0370-48b1-9fdc-24261b369e3f" alt="Alt text" width="200"/><br>
 <img src="https://github.com/emanlapaz/communihealthV2/blob/master/app/src/main/res/drawable/7_navigate.png" alt="Alt text" width="200"/><br>
+
+In the case that Eircode is not avaialbe the user can use current location as patient's address if the user is at the patient's address
+<img src="https://github.com/emanlapaz/communihealthV2/blob/master/app/src/main/res/drawable/Screenshot%202023-12-26%20084244.png" alt="Alt text" width="200"/><br>
+
 
 The Patient List screen display the patients that the user added. You can also toggle to display all the patients added by all users. The same applies to the Patient Location screen which displays the marker for all patients.<br>
 Swiping left will give you the option to DELETE the patient while swiping right will EDIT the patient data. <br>
