@@ -59,6 +59,34 @@ About screen<br>
 <img src="https://github.com/emanlapaz/communihealthV2/assets/96552779/e013a15f-2b4a-4036-956f-e3e629933226" alt="Alt text" width="200"/><br>
 <br>
 
+
+Firebase:
+
+<img src="https://github.com/emanlapaz/communihealthV2/blob/master/app/src/main/res/drawable/Screenshot%202023-12-21%20094919.png" alt="Alt text" width="200"/><br>
+<br>
+
+
+Class Diagrams:
+
+<img src="https://github.com/emanlapaz/communihealthV2/blob/master/app/src/main/res/drawable/Screenshot%202023-12-26%20083757.png" alt="Alt text" width="200"/><br>
+<br>
+
+HOME Class is the main activity and extends to the AppCompactActivity. The Home class integrated various components as follows: <br>
+DrawerLayout: Navigation <br>
+HomeBinding and NavHeaderBinding: UI Binding <br>
+AppBarConfiguration: Navigation bar setup <br>
+LoggedInViewModel, MapsViewModel, and FirebaseAuth: User session and map functionality <br>
+Intent: interactivity communication<br>
+
+ProfileFragment Class is associated with ProfileViewModel for data handling and interacts with LoggedInViewModel for users. ProfileFragementArgs is used for arguement passing and FragmentProfleBinding for UI interaction. <br>
+PatientDetailsViewModel manages the data logic and interacts witht eh FirebaseDBManager for database operations and also holds the Patient Model <br>
+PatientListFragement implements the PatientClickListener and uses the PatientListViewModel  for data management. <br>
+PatientFragment works with the FirebaseImageManager for image handling  and PatientViewModel for patient data. <br>
+MapsFragment uses an AlertDialog for alerts and interacts with SupportMapFragment and OnMapReadyCallback for map functionalities. It utilizes MapsViewModel for map data handling, PatientListViewModel for patient data, and LoggedInViewModel for users.<br>
+PatientDetailFragment Class uses PatientDetailViewModel for detailed patient data handling, ProfileFragmentArgs for argument passing, FragmentPatientDetailBinding for UI binding, and LoggedInViewModel.<br>
+
+
+
 Future Development:
 Communihealth can be developed in the future and be modified to add various functions like: <br>
 - Appointment List<br>
@@ -67,6 +95,11 @@ Communihealth can be developed in the future and be modified to add various func
 - Filtering<br>
 - Name Search<br>
 <br>
+
+Personal Statement:
+
+This android project and the Mobile App module itself is very challenging
+
 
 References: <br>
 SETU Lecture Materials(2023)<br>
@@ -82,6 +115,8 @@ Firebase (2023), Firebase Realtime Database, Available at: https://firebase.goog
 Picasso (2023), Picasso Image Library, Available at: http://square.github.io/picasso/ (Accessed: 12 December 2023). <br>
 
 Timber (2023), Timber Logging Utility, Available at: https://github.com/JakeWharton/timber (Accessed: 12 December 2023). <br>
+
+OpenAI. (2022). ChatGPT – OpenAI Artificial Intelligence. Chatbot Business Framework. Available at: https://chatbotbusinessframework.com/chatgpt-overview/ [Accessed 22 Dec. 2023].
 
 
 
